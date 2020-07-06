@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul {
+            position: relative;
+            /*border: 1px solid red;*/
+            padding: 0;
+            width: 100px;
+            top: 0px;
+            margin: 0;
+            float: left;
+        }
+
+        li {
+            border: 1px solid blue;
+            list-style: none;
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 10px;
+        }
+
+        div#game {
+            border: 1px solid green;
+            height: 100px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<h1>햄버거 하우스 게임</h1>
+<div id="game"></div>
+
+<input type="button" value="start" id="startBtn">
+<input type="button" value="stop" id="endBtn">
+
+<script>
+    var startBtn = document.getElementById("startBtn");
+    var endBtn = document.getElementById("endBtn");
+    var arr = [];
+    var THIS;
+    var cnt = 0;
+
+    function mkCardGrp(element_id) {
+        this.game = document.getElementById(element_id);
+        this.cardGrp = document.createElement("ul");
+        this.game.appendChild(this.cardGrp);
+
+        for (var i = 0; i < 10; i++) {
+            this.item = document.createElement("li");
+            this.item.innerText = i + 1;
+            this.cardGrp.appendChild(this.item);
+        }
+        this.item = document.createElement("li");
+        this.item.innerText = 1;
+        this.cardGrp.appendChild(this.item);
+
+        /*var y = Math.floor(Math.random() * 10) * -1
+        this.cardGrp.style.top = y * 100 + 'px';*/
+        THIS = this;
+        arr.push(THIS);
+        console.log(this);
+        console.log(arr);
+    }
+
+    startBtn.onclick = function () {
+        console.log(THIS);
+        THIS.y = 0;
+        THIS.speed = 10;
+        THIS.interval = setInterval(function () { // interval 안에서는 this가 안됨. window라서
+            THIS.y -= THIS.speed;
+            for (i = 0; i < 3; i++) {
+                arr[i].cardGrp.style.top = THIS.y + 'px';
+            }
+            if (THIS.y <= -1000) {
+                THIS.y = 0;
+            }
+            // THIS.cardGrp.style.top = THIS.y + 'px';
+            // console.log(y);
+            // this.cardGrp.style.top = y + 'px';
+            // console.log(this);
+        }, 50);
+    }
+
+    endBtn.onclick = function () {
+        cnt++;
+        clearInterval(THIS.interval);
+
+        /*for (i = 0; i < 3; i++) {
+            clearInterval(arr[i].interval);
+        }*/
+    }
+    var a = new mkCardGrp("game");
+    var b = new mkCardGrp("game");
+    var c = new mkCardGrp("game");
+    a.speed = 5;
+    a.speed = 15;
+    c.speed = 10;
+    /* startBtn.onclick = function () {
+         new mkCardGrp1("game");
+         new mkCardGrp2("game");
+         new mkCardGrp3("game");
+     }*/
+</script>
+</body>
+</html>

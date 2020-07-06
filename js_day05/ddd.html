@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul {
+            border: 0px solid red;
+            padding: 0px;
+            width: 100px;
+            position: relative;
+            top: -0px;
+            margin: 0;
+            float: left;
+        }
+
+        li {
+            border: 1px solid blue;
+            list-style: none;
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 10px;
+        }
+
+        div#game {
+            border: 1px solid green;
+            height: 100px;
+            overflow: hidden;
+
+        }
+    </style>
+</head>
+<body>
+<h1>햄버거 하우스 게임</h1>
+<div id="game"></div>
+<input type="button" value="멈춤" id="btn"></input>
+<script>
+    var cnt = 0;
+    var btn = document.getElementById("btn");
+
+    function mkCardGrp(element_id) {
+
+        this.game = document.getElementById(element_id)
+        this.cardGrp = document.createElement("ul");
+        this.cardGrp.stop = false;
+
+        this.game.appendChild(this.cardGrp);
+        for (var i = 0; i < 10; i++) {
+            this.item = document.createElement("li");
+            this.item.innerText = i + 1
+            this.cardGrp.appendChild(this.item);
+        }
+        this.item = document.createElement("li");
+        this.item.innerText = 1;
+        this.cardGrp.appendChild(this.item);
+
+        console.log(this)
+        /*var y = Math.floor(Math.random() * 10) * -1
+        this.cardGrp.style.top = y * 100 + 'px'*/
+        var y = 0;
+        var speed = 10
+        var THIS = this;
+        this.interval = setInterval(function () {
+            if (THIS.cardGrp.stop == true) {
+                THIS.cardGrp.style.top = Math.floor(y/100)*100+'px'
+                clearInterval(THIS.interval);
+            } else {
+                y -= speed;
+                THIS.cardGrp.style.top = y + 'px'
+                //console.log(this)
+                if (y <= -1000) {
+                    y = 0;
+                }
+            }
+        }, 50)
+    }
+    new mkCardGrp("game")
+    new mkCardGrp("game")
+    new mkCardGrp("game")
+    btn.onclick = function () {
+        if (cnt >= document.getElementsByTagName("ul").length) {
+            return;
+        }
+        var CG = document.getElementsByTagName("ul")[cnt++];
+        CG.stop = true;
+    }
+</script>
+
+</body>
+</html>

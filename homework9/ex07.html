@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>span 태그</title>
+</head>
+<body>
+
+<h3>span 태그만 onmouseover / onmouseout</h3>
+<hr>
+<p>
+    span 태그에 대해서만 <span>마우스</span>가 <br>
+    올라올 때 밑줄이 그어지고 <span>마우스</span>가 <br>
+    내려갈 때 밑줄이 사라지도록 <span>자바스크립트 코드</span>를 작성한다.
+</p>
+<script>
+    var element;
+    window.onmouseover = function (e) {
+        this.element = e.target;
+        if(element.tagName == 'SPAN'){
+            // console.log(element);
+            element.style.textDecoration = "underLine";
+        }
+    }
+    window.onmouseout = function (e) {
+        if(element != null){
+            // console.log(element);
+            element.style.textDecoration = "none";
+        }
+    }
+</script>
+
+</body>
+</html>

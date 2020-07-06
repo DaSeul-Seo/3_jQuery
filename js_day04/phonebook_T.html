@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>친구 연락처 관리 프로그램</h2>
+<!-- 아래 PhoneBook 클래스를 활용한 입력, 출력 구현 -->
+친구이름 입력 : <input type="text" name="friendName" id="friendName"><br>
+연락처 입력 : <input type="text" name="phoneNumber" id="phoneNumber"><br>
+<input type="button" id="appendBtn" value="입력">
+<hr>
+<div id="phonebook_list">
+
+</div>
+
+
+<script src="../js/underscore.js"></script>
+<script type="text/template" id="listTemplate">
+    <table border="1" width="500">
+        <tr>
+            <th>번호</th>
+            <th>친구이름</th>
+            <th>연락처</th>
+        </tr>
+        <%
+        for(var i in friendList) {
+        var friend = friendList[i];
+        %>
+        <tr>
+            <td><%=friend.idx%></td>
+            <td><%=friend.friendName%></td>
+            <td><%=friend.phoneNumber%></td>
+        </tr>
+        <%
+        } // end of for
+        %>
+    </table>
+</script>
+
+<script>
+    function Person(idx, friendName, phoneNumber) {
+        this.idx = idx;
+        this.friendName = friendName;
+        this.phoneNumber = phoneNumber;
+    }
+
+    function PhoneBook() {
+        this.personArr = [];
+    }
+    PhoneBook.prototype.append = function(person) {
+        this.personArr.push(person);
+    }
+    PhoneBook.prototype.getAll = function() {
+        return this.personArr;
+    }
+</script>
+
+<script>
+    var friendName = document.getElementById("friendName");
+    var phoneNumber = document.getElementById("phoneNumber");
+    var appendBtn = document.getElementById("appendBtn");
+    var phonebook_list = document.getElementById("phonebook_list");
+    var listTemplate = document.getElementById("listTemplate");
+
+    var phoneBook = new PhoneBook()
+    var seq = 1;
+    var compiled = _.template(listTemplate.innerHTML);
+    var html = compiled({"friendList":phoneBook.getAll()});
+    phonebook_list.innerHTML = html;
+    appendBtn.onclick = function () {
+        var person = new Person(seq++, friendName.value, phoneNumber.value);
+        phoneBook.append(person);
+
+        html = compiled({"friendList":phoneBook.getAll()});
+        phonebook_list.innerHTML = html;
+    }
+</script>
+
+</body>
+</html>

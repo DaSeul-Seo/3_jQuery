@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Test() {
+        var cnt = 0;
+        let fn = setInterval(() => {
+            console.dir(this); // Test
+            cnt++;
+            if (cnt == 5) clearInterval(fn);
+        }, 500);
+    }
+    // new Test();
+    function Test2() {
+        var cnt = 0;
+        let fn = setInterval(function(){
+            console.dir(this); // window
+            cnt++;
+            if (cnt == 5) clearInterval(fn);
+        }, 500);
+    }
+    new Test2();
+</script>
+</body>
+</html>

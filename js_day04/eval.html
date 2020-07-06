@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eval</title>
+    <!--eval 수식을 바꾸어주기도 하지만 객체도 바꾸어준다.-->
+    <script>
+        // JSP 서버에서 JSON형식의 문자열로 전송
+        // Ajax를 이용 비동기 호출을 사용.
+        // 클라이언트 : JS  <=JSON(연결)=> 서버 : JSP(Node.js)
+        var jsonStr = '{"name":"Hong","age":"25"}'; // json
+
+        var obj = eval('(' + jsonStr + ')');
+        console.dir(obj);
+        console.log("name: " + obj.name);
+        console.log("age: " + obj.age);
+
+        var jsonObj = JSON.parse(jsonStr);
+        console.dir(jsonObj);
+
+        var str = JSON.stringify(jsonObj);
+        console.log(str);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

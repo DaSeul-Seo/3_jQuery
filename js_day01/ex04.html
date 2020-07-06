@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>월화수목금토일</title>
+    <script>
+        /*function f1() {
+            var a = "월", b = "화'", c = "수", d = "목", e = "금", f = "토", g = "일";
+            if(text==a){document.write(a + "는(은) 출근");}
+            else if(text==b){document.write(b + "는(은) 출근");}
+            else if(text==c){document.write(c + "는(은) 출근");}
+            else if(text==d){document.write(d + "는(은) 출근");}
+            else if(text==e){document.write(e + "는(은) 휴일");}
+            else if(text==f){document.write(f + "는(은) 휴일");}
+            else{document.write(g + "는(은) 휴일");}
+            }*/
+        function f2(t){
+            if(t=="월" || t=="화" || t=="수" || t=="목"){
+                document.write(t + "는(은) 출근");
+            }
+            else if(t=="금" || t=="토" || t=="일"){
+                document.write(t + "는(은) 휴일");
+            }
+            else{
+                re();
+            }
+        }
+    </script>
+</head>
+<body>
+<h3>월화수목금토일</h3>
+<hr>
+<script>
+    re();
+    function re() {
+        var t = prompt("월화수목금토일 중에서 입력하세요");
+        f2(t);
+    }
+    /*var text = prompt("월화수목금토일 중에서 입력하세요");*/
+    /*f1();*/
+</script>
+</body>
+</html>

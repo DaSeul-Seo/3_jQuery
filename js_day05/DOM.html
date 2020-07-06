@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            position: relative;
+            /*border: 1px solid red;*/
+            padding: 0;
+            width: 100px;
+            top: 0px;
+            margin: 0;
+            float: left;
+        }
+        li{
+            border: 1px solid blue;
+            list-style: none;
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 10px;
+        }
+        div#game{
+            border: 1px solid green;
+            height: 100px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<h1>햄버거 하우스 게임</h1>
+<div id="game"></div>
+
+<input type="button" value="start" id="startBtn">
+<input type="button" value="stop" id="endBtn">
+
+<script>
+    var startBtn = document.getElementById("startBtn");
+    var endBtn = document.getElementById("endBtn");
+    function mkCardGrp1(element_id) {
+        this.game = document.getElementById(element_id);
+        this.cardGrp = document.createElement("ul");
+        this.game.appendChild(this.cardGrp);
+
+        for (var i = 0; i < 10; i++) {
+            this.item = document.createElement("li");
+            this.item.innerText = i + 1;
+            this.cardGrp.appendChild(this.item);
+        }
+        this.item = document.createElement("li");
+        this.item.innerText = 1;
+        this.cardGrp.appendChild(this.item)
+
+        var y = Math.floor(Math.random()*10)*-1
+        this.cardGrp.style.top = y*100 + 'px';
+
+        var THIS = this;
+
+        var y = 0;
+        var speed = 10;
+        this.interval = setInterval(function () {
+            y -=speed;
+            THIS.cardGrp.style.top = y + 'px';
+            if(y<=-1000){
+                y = 0;
+            }
+            // console.log(y);
+            // this.cardGrp.style.top = y + 'px';
+            // console.log(this);
+        }, 1000/30);
+        endBtn.onclick = function () {
+            clearInterval(THIS.interval);
+        }
+    }
+    function mkCardGrp2(element_id) {
+        this.game = document.getElementById(element_id);
+        this.cardGrp = document.createElement("ul");
+        this.game.appendChild(this.cardGrp);
+
+        for (var i = 0; i < 10; i++) {
+            this.item = document.createElement("li");
+            this.item.innerText = i + 1;
+            this.cardGrp.appendChild(this.item);
+        }
+        this.item = document.createElement("li");
+        this.item.innerText = 1;
+        this.cardGrp.appendChild(this.item)
+        //
+        var y = Math.floor(Math.random() * 10) * -1
+        this.cardGrp.style.top = y * 100 + 'px';
+
+        var y = 0;
+        var speed = 10;
+        var THIS = this;
+        this.interval = setInterval(function () {
+            y -= speed;
+            THIS.cardGrp.style.top = y + 'px';
+            if (y <= -1000) {
+                y = 0;
+            }
+            // console.log(y);
+            // this.cardGrp.style.top = y + 'px';
+            // console.log(this);
+
+        }, 1000 / 40);
+        endBtn.onclick = function () {
+            clearInterval(THIS.interval);
+        }
+    }
+    function mkCardGrp3(element_id) {
+        this.game = document.getElementById(element_id);
+        this.cardGrp = document.createElement("ul");
+        this.game.appendChild(this.cardGrp);
+
+        for (var i = 0; i < 10; i++) {
+            this.item = document.createElement("li");
+            this.item.innerText = i + 1;
+            this.cardGrp.appendChild(this.item);
+        }
+        this.item = document.createElement("li");
+        this.item.innerText = 1;
+        this.cardGrp.appendChild(this.item)
+
+        //
+        var y = Math.floor(Math.random() * 10) * -1
+        this.cardGrp.style.top = y * 100 + 'px';
+
+        var y = 0;
+        var speed = 10;
+        var THIS = this;
+        this.interval = setInterval(function () {
+            y -=speed;
+            THIS.cardGrp.style.top = y + 'px';
+            if(y<=-1000){
+                y = 0;
+            }
+            // console.log(y);
+            // this.cardGrp.style.top = y + 'px';
+            // console.log(this);
+
+        }, 1000/50);
+        endBtn.onclick = function () {
+            clearInterval(THIS.interval);
+        }
+    }
+    // for(var i = 0; i<3; i++){
+    //     new mkCardGrp("game");
+    // }
+    startBtn.onclick = function () {
+        new mkCardGrp1("game");
+        new mkCardGrp2("game");
+        new mkCardGrp3("game");
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div.obj {
+            border: 5px solid darkred;
+            color: darkred;
+            border-radius: 10px;
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            font-size: 18pt;
+            text-align: center;
+            line-height: 120px;
+            box-shadow: 5px 5px 5px navy;
+        }
+        div.targetBox {
+            border: 2px dashed gray;
+            width: 130px;
+            height: 130px;
+            position: absolute;
+            left: 500px;
+            top: 100px;
+        }
+    </style>
+    <script>
+        function Box(x, y, value) { // 클래스
+            this.obj = document.createElement("div");
+            this.obj.className = "obj";
+            this.obj.style.left = x + 'px';
+            this.obj.style.top = y + 'px';
+            this.obj.innerText = value;
+            document.body.appendChild(this.obj);
+            this.obj.dataValue = value;
+
+            this.targetBox = document.getElementsByClassName('targetBox')[0];
+            this.tx1 = this.targetBox.offsetLeft;
+            this.tx2 = this.tx1 + 130;
+            this.ty1 = this.targetBox.offsetTop;
+            this.ty2 = this.ty1 + 130;
+
+            this.obj.onmousedown = (e)=> {
+                this.obj.xgap = e.clientX -  this.obj.offsetLeft;
+                this.obj.ygap = e.clientY -  this.obj.offsetTop;
+                window.onmousemove = (e2)=> {
+                    //console.log(e2.clientX, e2.clientY);
+                    this.obj.style.left = (e2.clientX - this.obj.xgap) + 'px';
+                    this.obj.style.top = (e2.clientY - this.obj.ygap) + 'px';
+                };
+            };
+
+            this.obj.onmouseup = (e)=> {
+                window.onmousemove = null;
+                var cX = this.obj.offsetLeft + this.obj.offsetWidth / 2;
+                var cY = this.obj.offsetTop + this.obj.offsetHeight / 2;
+
+                if((cX>=this.tx1&&cX<=this.tx2)
+                    && (cY>=this.ty1&&cY<=this.ty2)) {
+                    this.obj.style.left = this.tx1 + 'px';
+                    this.obj.style.top = this.ty1 + 'px';
+                    document.body.bgColor = this.obj.dataValue;
+                } else {
+                    document.body.bgColor = "white";
+                }
+            }
+        };
+        window.onload = function () {
+            new Box(100,100,'skyblue');
+            new Box(100,250,'green');
+            new Box(100,400,'violet');
+        }
+    </script>
+</head>
+<body>
+<div class="targetBox"></div>
+</body>
+</html>

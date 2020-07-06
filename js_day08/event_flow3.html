@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div, p, button{
+            border: 1px solid black;
+            padding: 5px;
+            margin: 5px;
+            width: 200px;
+            transition: width .5s, background-color .3s;
+        }
+    </style>
+    <script>
+        var colors = ['yellow', 'green', 'blue'];
+        var index=0;
+        window.onload = function () {
+          var btnArea = document.getElementById("btnArea");
+          var btn = btnArea.getElementsByTagName("button")[0];
+          // btnArea.onmouseenter =
+          btnArea.onmouseover = function (e) {
+              btn.style.width = "400px";
+              // console.log(e.currentTarget.tagName);
+              e.currentTarget.style.background = colors[index++];
+              index %= colors.length;
+          };
+          //btn.onmouseleave =
+            btnArea.onmouseout =  function (e) {
+              btn.style.width = "200px";
+              console.log(e.currentTarget.tagName);
+              e.currentTarget.style.background = 'white';
+          };
+        };
+    </script>
+</head>
+<body>
+
+<div id="btnArea">
+    <div>
+        <p>
+            <button>버튼입니다</button>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

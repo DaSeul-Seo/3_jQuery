@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eval()</title>
+    <script>
+        function evaln(){
+            if(ev==null){ev = prompt("수식 입력");}
+            else if(ev==""){ev = prompt("수식 입력");}
+            else {
+                var ev2 = eval("2+12*8-20/7");
+                document.write("2+12*8-20/7 = " + ev2);
+            }
+        }
+    </script>
+</head>
+<body>
+
+<h3>eval()로 수식 계산</h3>
+<hr>
+<script>
+    var ev = prompt("수식 입력", "2+12*8-20/7");
+    evaln();
+</script>
+
+</body>
+</html>

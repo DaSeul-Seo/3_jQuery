@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var names = new Array("wonsun","jaemoonlee","kitae","gracehwang");
+    document.write("이름 : ")
+    for(var i=0; i<names.length; i++) {
+        document.write(name[i] + " ");
+    }
+    var longName = "";
+    for(var i =0; i<names.length; i++) {
+        if(longName.length <= names[i].length) {
+            longName = names[i];
+        }
+    }
+    document.write("<br>가장 긴 이름 : " + longName);
+
+    var newArr = names.sort();
+    document.write("<br>가장 만저 나오는 이름 : " + newArr[0]);
+
+    document.write("<br>증가 순 이름 : ")
+    for(var i = 0; i < newArr.length; i++) {
+        document.write(newArr[i] + " ");
+    }
+</script>
+
+</body>
+</html>

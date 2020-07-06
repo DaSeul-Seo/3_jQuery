@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div.button {
+            position: absolute;
+            background: violet;
+            color: yellow;
+            /*box-shadow: 3px 3px 3px black;*/
+            transition: box-shadow 0.5s, background-color 1s;
+        }
+    </style>
+</head>
+<body>
+<h3>마우스를 올려보세요</h3>
+<hr>
+<div class="button">나는 버튼이다</div>
+    <script>
+        // dom : Document Object Model (문서 객체 모델 - 문서에 있는 객체를 읽어들인다)
+        // 장부같은 역할
+
+        // dom을 선택할 때는 문서 요소보다 dom이 나중에 실행되어야 한다.
+        // JS는 interprinter언어이므로 순차적으로 실행됨.
+        var btn=document.querySelector('div.button');
+        console.log(btn);
+        /*function mouseoveraction() {
+            btn.style.boxShadow="3px 3px 3px black";
+        }
+        function mouseoutaction() {
+            btn.style.boxShadow="";
+        }*/
+        console.dir(btn);
+        // 괄호를 붙이면 X => mouseoveraction을 onmouseover에 대입
+        // btn.onmouseover=mouseoveraction;
+        // btn.onmouseout=mouseoutaction;
+
+        // 익명함수를 선언과 동시에 이벤트 핸들러로 초기화 가능.
+        // 콜백함수
+        btn.onmouseover=function() {
+            btn.style.boxShadow="3px 3px 3px black";
+        }
+        btn.onmouseout=function() {
+            btn.style.boxShadow="";
+        }
+    </script>
+</body>
+</html>

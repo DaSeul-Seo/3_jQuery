@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div#obj {
+            border: 5px solid darkred;
+            color: darkred;
+            border-radius: 10px;
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            font-size: 18pt;
+            text-align: center;
+            line-height: 120px;
+            box-shadow: 5px 5px 5px navy;
+            /*transition: left 0.3s;*/
+        }
+        div#targetBox {
+            border: 2px dashed gray;
+            width: 130px;
+            height: 130px;
+            position: absolute;
+            left: 500px;
+            top: 100px;
+        }
+        div#boxShadow {
+            border: 2px dashed red;
+            width: 5px;
+            height: 5px;
+            position: absolute;
+            left: 500px;
+            top: 100px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var obj = document.getElementById('obj');
+            var targetBox = document.getElementById('targetBox');
+            var boxShadow = document.getElementById('boxShadow');
+            //console.log(targetBox.offsetLeft, targetBox.offsetTop);
+            var tx1 = targetBox.offsetLeft;
+            var tx2 = targetBox.offsetLeft + 130;
+            var ty1 = targetBox.offsetTop;
+            var ty2 = targetBox.offsetTop + 130;
+
+            obj.onmousedown = function(e) {
+                obj.xgap = e.clientX - obj.offsetLeft;
+                obj.ygap = e.clientY - obj.offsetTop;
+                window.onmousemove = function(e2) {
+                    //console.log(e2.clientX, e2.clientY);
+                    obj.style.left = (e2.clientX - obj.xgap) + 'px';
+                    obj.style.top = (e2.clientY - obj.ygap) + 'px';
+                };
+            };
+            window.onmouseup = function(e) {
+                window.onmousemove = null;
+                //console.log('마우스 업 >>> ', obj.offsetLeft, obj.offsetTop);
+                var cX = obj.offsetLeft + obj.offsetWidth / 2;
+                var cY = obj.offsetTop + obj.offsetHeight / 2;
+                // console.log(cX, cY);
+                // boxShadow.style.left = cX +'px';
+                // boxShadow.style.top = cY + 'px';
+
+                if((cX>=tx1&&cX<=tx2) && (cY>=ty1&&cY<=ty2)) {
+                    //console.log("박스 겹침!");
+                    obj.style.left = tx1 + 'px';
+                    obj.style.top = ty1 + 'px';
+                    document.body.bgColor = "skyblue";
+                } else {
+                    //console.log("박스 안 겹침!");
+                    document.body.bgColor = "white";
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+<div id="targetBox"></div>
+<!--<div id="boxShadow"></div>-->
+<div id="obj">캠핑가자</div>
+</body>
+</html>

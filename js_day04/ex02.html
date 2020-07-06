@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>정수 5개 입력받아서 역순으로 출력</title>
+    <script>
+        function parse(n) {
+            var m = parseInt(n);
+            if(isNaN(m)){
+                alert("입력 오류");
+                return;
+            } else{
+                return parseInt(n);
+            }
+        }
+    </script>
+</head>
+<body>
+
+<h3>정수 5개 입력받아 역순으로 출력</h3>
+<hr>
+<script>
+    var arr=[];
+    var bbb=[];
+    for(var i = 0; i<5; i++){
+        var n = prompt("정수 입력");
+        arr[i] = parse(n);
+    }
+    /*console.log(arr);*/
+    document.write("입력된 수의 배열" + "<br>");
+    for(var i = 0; i<5; i++){
+        document.write(arr[i] + " ");
+        console.log(arr[i]);
+    }
+    console.log(arr);
+    document.write("<br><hr>" + "역순으로 재정렬된 배열" + "<br>");
+    arr.sort(function (a, b) {
+        return b - a;
+    });
+    document.write(arr);
+
+
+</script>
+
+</body>
+</html>

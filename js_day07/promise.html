@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // resolve : next / 다음 함수를 실행
+    // reject : 예외처리 함수 호출
+    var promise = new Promise(function (resolve, reject) {
+        console.log("1. 첫번째 실행... 준비단계");
+        // 다음 실행 지시
+        resolve("hello");
+    })
+    // 다음 실행기능을 then()의 인수로 선언
+    // promise.then().then().then().catch().finally();
+    promise.then(function (value) {
+        console.log("2. 다음 실행 : ", value);
+        // throw Error("Error!");
+        return new Promise(function (resolve, reject) {
+            resolve("next");
+        });
+    }).then(function (value) {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log("3. 그 다음 실행 : ", value);
+                resolve("next next");
+            });
+        }, 2000);
+    }).then(function (value) {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log("4. 다음 다음 실행 : ", value);
+
+                resolve("next next next");
+            }, 1000);
+        });
+    }).finally(function () {
+        console.log("5. The End");
+    })
+</script>
+</body>
+</html>

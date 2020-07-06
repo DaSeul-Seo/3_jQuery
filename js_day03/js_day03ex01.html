@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td{
+            text-align: center;
+            width : 100px;
+            height: 100px;
+        }
+        td:hover{
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+<h1>짝 맞추기 게임</h1>
+<hr>
+<table id="puzzle" border="1" width="400" height="400">
+    <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+    </tr>
+    <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+    </tr>
+    <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+    </tr>
+    <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+    </tr>
+</table>
+<p id="timer">5초 후에 게임 시작!</p>
+<script>
+    var cells = document.getElementById("puzzle").getElementsByTagName("td");
+    var timer = document.getElementById("timer");
+    /*console.log(cells);*/
+    function init() {
+        for(var i = 0; i<cells.length; ){
+            var index = (Math.floor(Math.random()*16)); // random은 0-1까지이며 소수점까지 나와서 floor해주어야 함.
+            if(cells[index].innerText=='.'){
+                var ch = String.fromCharCode(i%8+65);
+                cells[index].innerText = ch;
+                cells[index].word = ch; // JS는 변수 선언을 안해도 쓸 수 있다.
+                i++;
+            }
+        }
+        // 5초 후에 감추기
+        var sec = 5;
+        // 계속 반복해서 출력
+        var interval = setInterval(function () {
+            // setInterval((변수, 함수 등), 시간) => 일정한 시간 간격으로 작업을 수행하기 위해 사용
+            // clearInterval 함수로 중지
+            sec--;
+            timer.innerText = sec + " 초 후에 게임 시작!";
+            if(sec == 0) {
+                clearInterval(interval);
+                // 실행 중인 작업을 중지시키는 것이 아니라
+                // 지정된 작업은 모두 실행이 되고 다음 작업 스케줄이 중지되는 것.
+            }
+        }, 1000);
+            // 한번만 호출
+            // setTimeout((변수,함수 등), 시간) => 지정된 시간을 대기 후 작업 수행, 다시 일정 시간 대기 수 작업 수행
+            // clearTimeout(변수) 함수로 중지
+            setTimeout(start, 2000); // start함수를 5초지난 후
+        }
+
+    function start() {
+        for(var i = 0; i<cells.length; i++){
+            cells[i].innerText = " ";
+            cells[i].onclick = function(){
+                this.innerText = this.word;
+            };
+        }
+        timer.innerText = "START GAME";
+        /*console.dir(cells);*/
+    }
+    init();
+    reverse();
+</script>
+<script>
+    function click() {
+        for(var i = 0; i<cells.length; i++){
+            cells[i].onclick = function () {
+
+            }
+        }
+    }
+    function reverse() {
+        for(var i = 0; ; i++){
+            if (cells[i]==click()){
+                timer.innerText = "정답입니다!"
+            }
+        }
+    }
+</script>
+</body>
+</html>

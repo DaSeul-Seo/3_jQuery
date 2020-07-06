@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // 문서가 모두 불러와 지면 실행
+        window.onload=function () {
+            var timeOfDay = document.getElementById('timeOfDay');
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = today.getMonth()+1;
+            var day = today.getDate();
+            /*// Thu Jun 25 2020 10:10:12 GMT+0900 (대한민국 표준시)
+            timeOfDay.innerText=today.toString();
+            // 2020년 6월
+            timeOfDay.innerText=today.getFullYear() + "년" + (today.getMonth()+1) + "월";*/
+            timeOfDay.innerText=year + "년" + month + "월" + day + "일";
+            console.log(timeOfDay);
+        }
+    </script>
+</head>
+<body>
+
+<h3>객체 생성 및 활용</h3>
+<hr>
+<p>현재시간 : <span id="timeOfDay"></span></p>
+
+</body>
+</html>

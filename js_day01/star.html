@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>별찍기</title>
+    <script>
+        function printstar(n) {
+            var m = parseInt(n);
+            if(isNaN(m)){
+                alert("입력 오류입니다.");
+                return;
+            }
+            for(var i = 0; i<m; i++){
+                for( var j = 0; j<i+1; j++){
+                    document.write("*");
+                }
+                document.write("<br>");
+            }
+        }
+    </script>
+</head>
+<body>
+<h3>별 문자 출력하기</h3>
+<hr>
+<script>
+    var n = prompt("정수를 입력하세요.");
+    printstar(n)
+</script>
+</body>
+</html>

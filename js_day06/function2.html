@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 함수를 배열에 담아보기
+    var _factory = [
+        function () {return 'Hello 100';},
+        function () {return 'World 200';},
+        function () {return 'Apple 50';},
+        function () {return 'Banana 30';}
+    ]
+    for(var i= 0; i<_factory.length; i++){
+        console.log(_factory[i]());
+    }
+</script>
+</body>
+</html>

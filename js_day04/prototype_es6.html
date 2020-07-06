@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // ES6방식 사용
+    // ES6가 지원되지 않는 브라우저에서는 사용 불가
+    class Calc{
+        constructor() { // 필수
+            this.result = 0;
+        }
+        add(x, y){ // 자바와 비슷
+            this.result = x + y;
+        }
+        getResult(){
+            return this.result;
+        }
+    }
+    class CalcSub extends Calc{
+        constructor() {
+            // ★상속 시 생성자에서 super 호출 필수!
+            super();
+        }
+        div(x, y){
+            this.result = x / y;
+        }
+    }
+    // 같은 페이지에 같은 변수 선언 불가 => let은 불가, var는 가능
+    let calc = new Calc();
+    calc.add(10,4);
+    var value = calc.getResult();
+    document.write("value => " + value + "<br>");
+
+    let calc2 = new CalcSub();
+    calc2.div(10,4);
+    value = calc2.getResult();
+    document.write("value => " + value);
+</script>
+
+</body>
+</html>

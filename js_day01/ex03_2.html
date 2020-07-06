@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>document.write()표</title>
+    <style>
+        td, th{
+            border: 1px solid black;
+        }
+        table{
+            border: 1px solid red;
+
+        }
+    </style>
+</head>
+<body>
+
+<h3>document.write()로 표 만들기</h3>
+<hr>
+<script>
+    document.write("<table><tr><th>n</th>");
+    for(var i = 0; i<10; i++){
+        document.write("<td>" + i + "</td>");
+    }
+    document.write("</tr>");
+    document.write("<br>");
+    document.write("<tr>");
+    document.write("<th>n^</th>");
+    for(var j = 0; j<10; j++){
+        document.write("<td>" + (j*j) + "</td>");
+    }
+    document.write("</table>");
+</script>
+</body>
+</html>

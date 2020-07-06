@@ -1,0 +1,18 @@
+#box{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 5px solid orange;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 100px;
+    background-color: darkslateblue;
+    color: yellow;
+    text-shadow: 2px 2px 2px black;
+    box-shadow: 3px 3px 3px black;
+    background-image: url("images/맨.jpg");
+    background-size: 100px 100px;
+    transition: left .3s, top .3s;
+    left: 100px;
+    top: 100px;
+}

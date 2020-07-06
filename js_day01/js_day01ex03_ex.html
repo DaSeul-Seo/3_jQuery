@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div.button{
+            position: absolute;
+            background: mediumpurple;
+            color: blue;
+            transition: box-shqdow 1s, background-color 0.5s;
+        }
+    </style>
+    <script>
+        function mouseovers() {
+        var btn = document.querySelector('div.button');
+        console.dir(btn);
+        btn.innerText="나는 개발자다.";
+        btn.style.backgroundColor="yellowgreen";
+        btn.style.boxShadow="3px 3px 3px black"
+        }
+        function mouseouts() {
+        var btn = document.querySelector('div.button');
+        /*console.dir(btn);*/
+        btn.innerText="나는 버튼이다.";
+        btn.style.backgroundColor="";
+        btn.style.boxShadow=""
+        }
+    </script>
+</head>
+<body>
+<h3>마우스를 올려보세요</h3>
+<hr>
+<div class="button"
+     onmouseover="mouseovers()"
+     onmouseout="mouseouts()">나는 버튼이다.</div>
+</body>
+</html>

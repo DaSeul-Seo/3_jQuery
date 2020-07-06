@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 5px solid orange;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 100px;
+            background-color: darkslateblue;
+            color: yellow;
+            text-shadow: 2px 2px 2px black;
+            box-shadow: 3px 3px 3px black;
+            transition: left .3s, top .3s;
+            left: 100px;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<button id="btnLeft">Left</button>
+<button id="btnRight">Right</button>
+<button id="btnUp">Up</button>
+<button id="btnDown">Down</button>
+<hr>
+<div id="box">Box</div>
+
+<script>
+    // getElementById() ID로 dom을 가지고 온다.
+    // 문자열로 가지고 온다.
+    var btnLeft = document.getElementById('btnLeft');
+    var btnRight = document.getElementById('btnRight');
+    var btnUp = document.getElementById('btnUp');
+    var btnDown = document.getElementById('btnDown');
+    var box = document.getElementById('box');
+    var x = 100;
+    var y = 100;
+    /*console.log(btn);*/
+    function move(){
+        switch (this) {
+            case btnLeft : a = 180; x = x - 50; break;
+            case btnRight : a = 0; x = x + 50; break;
+            case btnUp : a = 270; y = y - 50; break;
+            case btnDown : a = 90; y = y + 50; break;
+        }
+        box.style.transform = 'rotate('+a+'deg)';
+        box.style.left = x + 'px';
+        box.style.top = y + 'px';
+    }
+    btnLeft.onclick = move;
+    btnRight.onclick = move;
+    btnUp.onclick = move;
+    btnDown.onclick = move;
+</script>
+</body>
+</html>

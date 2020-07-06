@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 변수 성언 방법
+    // var 또는 let을 이용한다.
+    // 상수는 const를 이용한다.
+
+    // var는 지역성이 함수단위
+    // 중복된 식별자를 사용 가능.
+    var a = 100;
+    a = 200;
+    console.log("a", a);
+    // let은 지역성이 블럭단위
+    // 같은 영역에서 식별자 중복 허용 안함.
+    let b = '홍길동';
+    b = '김길동';
+    console.log('b', b);
+
+    // var, let 둘다 없으면 전역변수(window)이다.
+
+
+</script>
+</body>
+</html>

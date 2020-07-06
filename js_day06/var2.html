@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 변수의 지역성
+    var userName = "김";
+    function aaa() {
+        var userName = "이";
+        console.log("userName : ", userName);
+    }
+    function bbb() {
+        // console.log("userName : ", userName);
+        for(var i = 0; i<5; i++){
+            var number = i;
+        }
+        // var로 선언된 변수는 지역성(scope)이 함수 단위.
+        console.log('number : ', number);
+    }
+    function ccc() {
+        // console.log("userName : ", userName);
+        for(var i = 0; i<5; i++){
+            let number = i;
+        }
+        // ler으로 선언된 변수는 지역성(scope)이 블럭단위.(자바랑 비슷)
+        console.log('number : ', number);
+    }
+    aaa();
+    bbb();
+    ccc();
+</script>
+</body>
+</html>

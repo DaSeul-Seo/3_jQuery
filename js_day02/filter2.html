@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p><input type="text" id="query"></p>
+<div id="my_list"></div>
+<script>
+    var pList=[
+        {"title" : "파이썬 프로그래밍","price" : 38000},
+        {"title" : "안드로이드 프로그래밍","price" : 30000},
+        {"title" : "자바 프로그래밍","price" : 35000},
+        {"title" : "생존코딩","price" : 28000}
+    ];
+
+    var query = document.getElementById("query");
+    var myList = document.getElementById("my_list");
+
+    function drawList(search){
+        var resultArr = pList.filter(function (person) {
+            return person.title.indexOf(search) != -1;
+            /*console.log(this.value); // this = 이벤트 발생된 요소*/
+        });
+        var tags = "<ul>";
+        resultArr.forEach(function (value) {
+            tags += "<li>" + value.title + "</li>";
+        })
+        tags += "</ul>";
+        myList.innerHTML = tags;
+    };
+    query.onkeyup = function () {
+        var search = this.value;
+        drawList(search);
+    };
+    drawList("");
+</script>
+</body>
+</html>

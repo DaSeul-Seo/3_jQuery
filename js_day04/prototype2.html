@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // 자바스크립트 실행 - 브라우저, cmd
+        // cmd = Node.js
+        // 1. Object 내장 객체를 이용한 객체 생성.(일회용)
+        // 2. 객체 리터럴을 이용한 객체 생성.(일회용)
+        // 3. prototype(클래스)를 이용한 객체 생성.(계속 생성 가능)
+
+        /*class Calc{
+            function Calc(){ }
+        }*/
+
+        // Calc클래스의 생성자
+        function Calc() { // 대문자로 시작하면 class
+            // ★멤버필드, 멤버메소드에 모두 this지정해야 함!!
+            this.result = 0;
+            /*this.add = function(x, y){
+                this.result = x + y;
+                return this.result
+            }*/
+        }
+        // 생성자 외부에 메소드 선언(권장사항)
+        // 메소드가 생성자에 선언되면 모든 객체가 Copy한다.
+        Calc.prototype.add = function(x, y){
+            this.result = x + y;
+            return this.result
+        }
+        Calc.prototype.getResult = function () {
+            // ★클래스의 멤버 접근 시  this가 필요!
+            return this.result;
+        }
+
+        // 상속(옛날에 사용했던 방식)
+        function CalcSub() {}
+        CalcSub.prototype = new Calc()
+        CalcSub.constructor = CalcSub;
+
+        CalcSub.prototype.mult = function (x, y) {
+            this.result = x * y;
+            return this.result;
+        }
+
+        var calc = new Calc();
+        calc.add(5,6);
+        document.write("결과: " + calc.getResult() + "<br>");
+
+        var calc2 = new CalcSub();
+        calc2.mult(3,5);
+        document.write("결과2: " + calc2.result + "<br>");
+        calc2.add(10,15);
+        document.write("결과3: " + calc2.result)
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>적정체중 구하기</title>
+</head>
+<body>
+<!--<script>
+    var userHeight = 180; // 신장
+    var userWeight = 74; // 체중
+
+    // 평균체중 = (신장-100) * 0.9
+    var normal_w = (userHeight-100) * 0.9;
+    document.write(normal_w);
+</script>-->
+<script>
+    var name = prompt("당신의 이름은?", "");      // 이름
+    var height = prompt("당신의 신장은?", "0");   // 신장
+    var weight = prompt("당신의 체중은? ", "0");  // 체중
+
+    var normal_w = (height-100) * 0.9;
+    var result = weight>=normal_w -5 && weight <= normal_w +5;  // 오차범위 +-5
+    result = result? "적정체중입니다." : "적정 체중이 아닙니다";
+    document.write(name + "님은 " + result);
+</script>
+</body>
+</html>

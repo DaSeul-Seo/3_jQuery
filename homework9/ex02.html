@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function findChecked() {
+            var found = null;
+            var view = document.getElementsByName("view"); // 이름가진 모든 태그
+            var img = document.getElementById("pun"); // 찾고자 하는 id값
+
+            for(var i = 0; i<view.length; i++){
+                if(view[i].checked == true){
+                    found = view[i];
+                    break;
+                }
+            }
+            console.log(found);
+            img.src = found.value;
+        }
+    </script>
+</head>
+<body>
+<h3>라디오버튼을 클릭하면 이미지를 출력합니다.</h3>
+<hr>
+<form>
+    <input type="radio" name="view" value="images/바다.jpg" checked onchange="findChecked()">바다
+    <input type="radio" name="view" value="images/산.jpg" onchange="findChecked()">산
+    <input type="radio" name="view" value="images/하늘.jpg" onchange="findChecked()">하늘
+    <br>
+</form>
+<img id="pun" src="images/바다.jpg" alt="바다">
+</body>
+</html>

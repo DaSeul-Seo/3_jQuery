@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //변수를 만들고 값을 넣지 않으면 undefined.
+    // let num = 0;
+    var num = 0;
+
+    function aa() {
+        num = 100;
+        console.log(typeof num, num);
+        // 끌어올림 - 클러져
+        // let은 같은 식별자 선언 불가능
+        // => 밖에 let이 있으면 안에 let을 또 만들지 못함.
+        // let num;
+        var num;
+    }
+    function bb() {
+        console.log(typeof num, num);
+    }
+    aa();
+    bb();
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>정수 5개 입력받아서 역순으로 출력</title>
+</head>
+<body>
+
+<h3>정수 5개 입력받아 역순으로 출력</h3>
+<hr>
+<script>
+    var arr=[];
+
+    function printArr() {
+        for(var i = 0; i<arr.length; i++){
+            document.write(arr[i] + " ");
+            /*console.log(arr[i]);*/
+        }
+    }
+    for(var i = 0; i<5; i++){
+        arr.push(parseInt(prompt("정수 입력", "")));
+    }
+    document.write("입력된 수의 배열" + "<br>");
+    /*console.log(arr);*/
+    printArr();
+    document.write("<hr>");
+
+    document.write("<br><hr>" + "역순으로 재정렬된 배열" + "<br>");
+   /* arr.sort(function (a, b) {
+        return b - a;
+    });*/
+   /*var size = arr.length;
+    for(var i = 0; i<size; i++){
+        document.write(arr.pop() + " ");
+    }*/
+   while((num=arr.pop())!= null){
+       document.write(num + " ");
+   }
+</script>
+</body>
+</html>

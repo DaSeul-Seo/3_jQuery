@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 함수를 인수로 넘기기 - 콜백함수
+    function playFn(fn) {
+        console.log('playFn 호출');
+        if(typeof fn == 'function') {
+            fn('playFn에서 보낸 메세지');
+        } else{
+            console.log(fn);
+        }
+    }
+    function aaa() {
+        console.log('>>> aaa 함수 호출!');
+    }
+    // 콜백함수
+    playFn(function (message) {
+        console.log(">>> 익명 함수 호출!");
+        console.log('message => ', message);
+    });
+    playFn(aaa);
+    playFn("Korea");// 오류 => function이 아니라서
+</script>
+</body>
+</html>

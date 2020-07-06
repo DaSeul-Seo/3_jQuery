@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>갬블링 게임</title>
+    <style>
+        #box{
+            background-color: pink;
+            border: 1px solid red;
+            width: 165px;
+            height: 48px;
+        }
+        #box>div{
+            box-sizing: border-box;
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: 40px;
+        }
+        #result{
+            color: red;
+        }
+    </style>
+    <script>
+        var numbers = null;
+        var result = null;
+        var init = function () {
+            // console.log(numbers);
+            var numArr = [];
+            numbers.forEach(function(item, index, list){
+                item.onclick = function () {
+                    // console.log(this.innerText);
+                    numArr.push(1+Math.floor(Math.random()*2));
+                    this.innerText=numArr[index];
+                    item.onclick = null;
+
+                    if(numArr.length==3){
+                        if(numArr[0]==numArr[1] && numArr[1]==numArr[2]){
+                            result.innerText = 'Success(click here to do again)';
+                        } else{
+                            result.innerText = 'Fail(click here to do again)';
+                        }
+                    }
+                }
+            });
+        };
+        window.onload = function () {
+            numbers = document.querySelectorAll("#box>div");
+            result = document.querySelector("#result");
+            init();
+
+            result.onclick = function () {
+                init();
+                for(var i in numbers){
+                    numbers[i].innerText = '0';
+                    result.innerText = "";
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+<h3>갬블링 게임</h3>
+각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다.
+모두 같은 수가 나오면 승리합니다.
+<hr>
+<div id="box">
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+</div>
+<div id="result"></div>
+</body>
+</html>

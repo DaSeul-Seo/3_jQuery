@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>친구 연락처 관리 프로그램</h2>
+친구이름 입력:<input type="text" name="friendName" id="friendName"><br>
+연락처 입력 : <input type="text" name = "phoneNumber" id="phoneNumber"><br>
+<input type="button" value = "입력" id="appendbtn">
+<input type="button" value = "출력" id="getAllbtn">
+<hr>
+<div id="pblist">
+</div>
+
+<script src="../js/underscore.js"></script>
+<script type="text/template" id="listTemplate">
+    <!--퍼센트 안에 주석처리 안됨.-->
+    <table border="1" width="500">
+        <tr>
+            <th>번호</th>
+            <th>친구이름</th>
+            <th>연락처</th>
+        </tr>
+        <%
+        for(var i in friendList){
+        var friend = friendList[i];
+        %>
+        <!--for(var i = 0; i<friendsList.length; i++){
+        var friend = friendsList[i];-->
+        <tr>
+            <td><%=friend.idx%></td>
+            <td><%=friend.friendName%></td>
+            <td><%=friend.phoneNumber%></td>
+        </tr>
+        <%
+        } // end of for
+        %>
+    </table>
+</script>
+
+<script>
+// PhoneBook클래스를 활용한 입력, 출력 구현.
+    function Person(idx, friendName, phoneNumber) {
+        this.idx = idx;
+        this.friendName = friendName;
+        this.phoneNumber = phoneNumber;
+    }
+    function PhoneBook(){
+        this.personArr = [];
+    }
+    PhoneBook.prototype.append= function(person){ // 입력
+        this.personArr.push(person);
+    }
+    PhoneBook.prototype.getAll = function () { // 출력
+        return this.personArr;
+    }
+</script>
+
+<script>
+    var friendName = document.getElementById("friendName");
+    var phoneNumber = document.getElementById("phoneNumber");
+    var appendbtn = document.getElementById("appendbtn");
+    var getAllbtn = document.getElementById("getAllbtn");
+    var pblist = document.getElementById("pblist");
+    var listTemplate = document.getElementById("listTemplate");
+
+    var phoneBook = new PhoneBook();
+    var seq = 1; // 전역변수
+    var compiled = _.template(listTemplate.innerHTML);
+    var html = compiled({"friendList":phoneBook.getAll()});
+    pblist.innerHTML = html;
+
+    appendbtn.onclick = function () {
+        var person = new Person(seq++, friendName.value, phoneNumber.value);
+        phoneBook.append(person);
+        html = compiled({"friendList":phoneBook.getAll()});
+        pblist.innerHTML = html;
+    }
+
+</script>
+</body>
+</html>

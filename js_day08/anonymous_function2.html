@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>익명함수로 이벤트 리스너 작성</title>
+    <script>
+        window.onload = function () { // 문서가 완전히 로드되었을 때 호출
+            var p = document.getElementById("p");
+            p.onmouseover = function () { // 익명함수
+                // 이벤트 핸들러 안에서 this는 이벤트 발생한 요소
+                this.style.backgroundColor = "orchid";
+                console.dir(this);
+            };
+            // ES6에 추가된 문법
+            p.onmouseout = ()=>{
+                // 외부에서 썼을 때 this는 객체 자신이 됨.(window)
+                p.style.backgroundColor = "white";
+                console.dir(this);
+            }
+        }
+    </script>
+</head>
+<body>
+<h3>익명함수로 이벤트 리스너 작성</h3>
+<hr>
+<p id="p">마우스 올리면 orchid 색으로 변경</p>
+</body>
+</html>
+

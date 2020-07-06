@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CDN(content ) : 웹상에 존재하는 라이브러리를 직접 사용 -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+
+<p id="box"></p>
+<script>
+    var fruits=['사과','바나나','딸기','수박','복숭아'];
+    var htmlTag="<ul>";
+    var person = {name:"hong", phone:"010-1111-1111"}; // object
+
+    fruits.forEach(function (fruit) {
+        htmlTag += "<li>" + fruit + "</li>";
+    });
+    /*document.querySelector('#box').innerHTML= htmlTag;*/
+    $('#box').html(htmlTag);
+    console.log(typeof fruits); // object
+    console.log(Array.isArray(fruits));
+    console.log(fruits instanceof Array);
+    console.log(Array.isArray(person));
+    console.log(typeof person); // object
+</script>
+
+</body>
+</html>

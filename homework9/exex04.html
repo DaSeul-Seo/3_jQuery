@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>9장 이론 4번</title>
+    <script>
+        window.onload = function () {
+            var obj = document.getElementById("div1");
+            function f() {
+                obj.style.background = "orchid";
+            }
+            obj.addEventListener("click", f);
+
+            obj.onclick = f;
+
+            obj.onclick = function () {
+                obj.style.background = "orchid";
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1">안녕하세요. 환영합니다.</div>
+</body>
+</html>

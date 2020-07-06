@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>늘어남</title>
+</head>
+<body>
+<h3>클릭하면 2,3,4배로 옆으로 늘어납니다.</h3>
+<hr>
+<div>
+    <img id="imgbox" src="./images/00.png" alt="메타몽" width="100" height="100">
+</div>
+<script>
+    var imgbox = document.getElementById("imgbox");
+    var deg = 0;
+    imgbox.onclick = function () {
+        imgbox.style.transform = "scale(2,1)";
+    }
+</script>
+</body>
+</html>

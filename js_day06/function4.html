@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div#box{
+           border: 3px solid black;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            transition: width .5s, height .5s, transform .5s;
+        }
+    </style>
+</head>
+<body>
+<div id="box">box</div>
+<script>
+    function move(selector, callback) {
+        // 함수 안에 전역
+        var box = document.querySelector(selector);
+        box.callback = callback;
+        box.style.position = 'absolute';
+        var target = 400;
+        var x = 0;
+        var fn = setInterval(function () {
+            x +=10;
+            box.style.left = x + 'px';
+            if(target <= x){
+                clearInterval(fn);
+                // 콜백 함수 실행
+                box.callback();
+                console.log(this);
+            }
+        }, 30);
+        console.log(this);
+    }
+    move('#box', function () {
+        console.log(this);
+        this.style.background = 'blue';
+        this.style.width = '200px';
+        this.style.height = '200px';
+        var This = this;
+        setTimeout(function () {
+            This.style.transform = 'rotate(360deg) scale(1)';
+            // This.style.top = '-50px';
+        })
+    });
+    // 흐름제어 : promise 객체 사용(콜백 안에 콜백 안에 콜백 ....)
+</script>
+</body>
+</html>

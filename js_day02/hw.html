@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #resultList{
+            border: 1px solid black;
+            display: inline-block;
+        }
+        .Pass{
+            color: blue;
+        }
+        .Fail{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h3>사칙연산 인지능력 테스트</h3>
+<div>
+    <input type="text" name="a" id="a" size="2">
+    <select name="oper" id="oper">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="text" name="b" id="b" size="2">
+    <input type="text" name="result" id="result" size="2">
+    <input type="button" value="결과 추가하기" id="btn">
+</div>
+<hr>
+<h3>결과확인 목록</h3>
+<div>
+<select name="search" id="search">
+    <option value="pass">All</option>
+    <option value="pass">Pass</option>
+    <option value="fail">Fail</option>
+</select>
+</div>
+<p id="dateBox">날짜 : 0000년 00월 00일</p>
+<script src="../js/moment.js"></script>
+<script src="../js/moment-with-locales.js"></script>
+
+<div id="resultList">
+    <!--10 + 5 = 15 (pass)  15:32 <= color를 blue로<br>
+    10 - 3 = 6  (fail : 7) 15:50 <= color를 red로-->
+    <!--<table border="1">
+        <tr>
+            <th>순서</th>
+            <th>연산</th>
+            <th>결과</th>
+            <th>시간</th>
+        </tr>
+    </table>-->
+</div>
+<script id="resTemp" type="text/template">
+    <table border="1">
+        <tr>
+            <th>순서</th>
+            <th>연산</th>
+            <th>결과</th>
+            <th>시간</th>
+        </tr>
+        <%
+        for(var i = 0; i<list.length; i++){
+        var answer = list[i];
+        %>
+        <tr class="<%=answer.result%>">
+            <th><%=i%></th>
+            <th><%=answer.answer%></th>
+            <th><%=answer.result%></th>
+            <th><%=answer.time%></th>
+        </tr>
+        <% } // end of for %>
+    </table>
+</script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.10.2/underscore-min.js"></script>
+<script src="../js/moment.js"></script>
+<script>
+// 사용하는 것 다 가지고 오기
+var a = document.getElementById("a");
+var b = document.getElementById("b");
+var result = document.getElementById("result");
+var oper = document.getElementById("oper");
+var btn = document.getElementById("btn");
+var search = document.getElementById("search");
+var resultListArea = document.getElementById("resultList");
+var dateBox = document.getElementById("dateBox");
+
+/*var nowDay = moment().format('YYYY년 MM월 DD일');*/
+/*console.log(nowDay);*/
+dateBox.innerText = "날짜 : " + moment().format('YYYY년 MM월 DD일');
+var dataList = [];
+//dataList.push({"answer":"10 + 5 = 15","result":"Pass","time":moment().format("h:mm:ss a")});
+//dataList.push({"answer":"10 - 3 = 6","result":"Fail : 7","time":moment().format("h:mm:ss a")});
+/*console.log(dataList);*/
+
+var resTemp = document.getElementById("resTemp");
+/*console.log(resTemp.innerText); // 문자열(써있는) 그대로
+  console.log(resTemp.innerHTML); // html 형식으로 바꾸어서 보여줌*/
+var compiled = _.template(resTemp.innerHTML); // 객체 생성
+/*console.log(compiled({name: 'moe'}));*/
+/*$('#domo').html(compiled({name: 'moe'}));*/ // jquery 사용
+btn.onclick = function () {
+    var aValue = parseInt(a.value);
+    var bValue = parseInt(b.value);
+    var operValue = oper.value;
+    var resultValue = parseInt(result.value);
+    var resultStr = "Pass";
+    var res = 0;
+
+    switch (operValue) {
+    case "+" : res = aValue + bValue; resultStr = res != resultValue ? "Fail (" + res + ")" : "Pass"; break;
+    case "-" : res = aValue - bValue; resultStr = res != resultValue ? "Fail (" + res + ")" : "Pass"; break;
+    case "*" : res = aValue * bValue; resultStr = res != resultValue ? "Fail (" + res + ")" : "Pass"; break;
+    case "/" : res = aValue / bValue; resultStr = res != resultValue ? "Fail (" + res + ")" : "Pass"; break;
+    }
+
+    /*dataList.push({"answer": "10 + 5 = 15", "result": "Pass", "time": moment().format("h:mm:ss a")});*/
+    var newData = {
+        "answer": aValue +" " + operValue + " " + bValue + " = " + resultValue,
+        "result": resultStr,
+        "time": moment().format("h:mm:ss a")
+    };dl
+    dataList.push(newData);
+
+    // 안에 써도 되고 밖에 써도 되고
+    /*var resTemp = document.getElementById("resTemp");
+    /!*console.log(resTemp.innerText); // 문자열(써있는) 그대로
+      console.log(resTemp.innerHTML); // html 형식으로 바꾸어서 보여줌*!/
+    var compiled = _.template(resTemp.innerHTML); // 객체 생성
+    /!*console.log(compiled({name: 'moe'}));*!/
+    /!*$('#domo').html(compiled({name: 'moe'}));*!/ // jquery 사용*/
+    document.getElementById('resultList').innerHTML = compiled({list: dataList}); // JS
+    // 객체에 내가 원하는 형식으로 넣어서 resultList에 넣어주겠다.
+}
+search.onchange = function () {
+    var value = this.value;
+    console.log(value);
+    var newList = dataList.filter(function(obj) {
+        console.log(obj.result);
+        if(value == 'All') {
+            return true;
+        }
+        return (obj.result.toLowerCase()).indexOf(value.toLowerCase()) != -1;
+    });
+    document.getElementById('resultList').innerHTML = compiled({list: newList});
+}
+</script>
+</body>
+</html>

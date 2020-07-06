@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div.button {
+            position: absolute;
+            background: violet;
+            color: yellow;
+            /*box-shadow: 3px 3px 3px black;*/
+            transition: box-shadow 0.5s, background-color 1s;
+        }
+    </style>
+    <script>
+        // dom : Document Object Model (문서 객체 모델 - 문서에 있는 객체를 읽어들인다)
+        // 장부같은 역할
+        function mouseoveraction() {
+            // JS 내장 객체인 document를 통해서 요소 접근
+            // query : CSS에서 쓰는 방식을 그대로 쓰겠다.
+            // querySelector : 한번에 한번씩
+            // querySelectorAll : 전체 다 가지고 온다
+            var btn=document.querySelector('div.button');
+            // btn에 dom이 저장되었다?
+            /*console.dir(btn);*/
+            btn.style.boxShadow="3px 3px 3px black";
+        }
+        function mouseoutaction() {
+            // 변수를 선언할 때 var를 붙이면 지역변수, 안 붙이면 전역변수(window객체)
+            var btn=document.querySelector('div.button');
+            btn.style.boxShadow="";
+        }
+    </script>
+</head>
+<body>
+<h3>마우스를 올려보세요</h3>
+<hr>
+<!--JS 코드 작성 : inline, internal, external 모두 가능-->
+<div class="button"
+     onmouseover="mouseoveraction()"
+     onmouseout="mouseoutaction()">나는 버튼이다</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>z-index 스타일 프로퍼티</title>
+    <style>
+        div {
+            position: absolute;
+        }
+
+        img {
+            position: absolute;
+        }
+
+        #a, #b, #c, #d {
+            z-index: -3;
+            left: 10px;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+<h3>z-index 스타일 프로퍼티</h3>
+<hr>
+<div>
+    <img id="a" src="./images/00.png" width="100" height="140" alt="메타몽">
+    <img id="b" src="./images/11.png" width="100" height="140" alt="피카츄">
+    <img id="c" src="./images/22.png" width="100" height="140" alt="파이리">
+    <img id="d" src="./images/33.png" width="100" height="140" alt="꼬부기">
+</div>
+<script>
+    var im = document.getElementsByTagName("img");
+    console.dir(im);
+    for (var i = 0; i < im.length; i++) {
+        im[i].style.zIndex = i;
+        im[i].onclick = function () {
+            console.log(this);
+            if (this.style.zIndex == -1) {
+                this.style.zIndex = "";
+            } else {
+                this.style.zIndex = im.length - i - 1;
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

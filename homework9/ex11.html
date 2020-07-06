@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td{
+            border: 1px solid black;
+            width: 50px;
+            height: 50px;
+        }
+        td>img{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    <script>
+        var imgUrl = 'images/00.png';
+        function rand() {
+            return Math.floor(Math.random()*100);
+        }
+        function init() {
+            var i = rand();
+            document.images[i].src = imgUrl;
+            // console.log(document.images);
+            var move = function () {
+                var i = rand();
+                document.images[i].src = imgUrl;
+                document.images[i].onclick = move;
+                this.onclick = null;
+                this.src = "";
+            }
+            document.images[i].onclick = move;
+        }
+    </script>
+ <!--   <script>
+        var imgUrl = 'images/00.png';
+        function rand() {
+            return Math.floor(Math.random()*100);
+        }
+        function init() {
+            var i = rand();
+            document.images[i].src = imgUrl;
+
+            var move = function() {
+                var i = rand();
+                document.images[i].src = imgUrl;
+                document.images[i].onclick = move;
+                this.onclick = null;
+                this.src = "";
+            }
+            document.images[i].onclick = move;
+        }
+    </script>-->
+</head>
+<body onload="init()">
+<table>
+    <tr>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+    </tr>
+    <tr>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+    </tr>
+    <tr>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+    </tr>
+    <tr>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+    </tr>
+    <tr>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+    </tr>
+    <tr>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+    </tr>
+    <tr>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+    </tr>
+    <tr>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+    </tr>
+    <tr>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+    </tr>
+    <tr>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+        <td><img src="" alt=""></td>
+    </tr>
+</table>
+</body>
+</html>

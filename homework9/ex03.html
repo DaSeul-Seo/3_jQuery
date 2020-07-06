@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>계산기 만들기</title>
+    <script>
+        function calc() {
+            var calcu = document.getElementById("calcu");
+            var result = document.getElementById("result");
+            console.dir(calcu);
+            console.log(calcu);
+            result.value = eval(calcu.value);
+        }
+    </script>
+</head>
+<body>
+<h3>계산기 만들기</h3>
+<hr>
+<div>수식을 입력하고 Enter를 입력하세요.</div>
+<div>
+    식 <input id="calcu" type="text" value=""><br>
+    값 <input id="result" type="text" onkeypress="calc()">
+</div>
+</body>
+</html>

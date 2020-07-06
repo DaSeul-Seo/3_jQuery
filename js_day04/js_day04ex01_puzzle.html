@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td{
+            text-align: center;
+            width : 100px;
+            height: 100px;
+        }
+        td:hover{
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+<h1>짝 맞추기 게임</h1>
+<hr>
+<table id="puzzle" border="1" width="400" height="400">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<p id="timer">5초 후에 게임 시작!</p>
+<script>
+    var cells = document.getElementById("puzzle").getElementsByTagName("td");
+    var timer = document.getElementById("timer");
+    // 이미지 객체 => 이미지 수가 많을 때 사용
+    var backimgArr = [];
+    var startSec = 0;
+    var endSec = 0;
+    var cnt = 0;
+    for(var i = 0; i<cells.length; i++){
+        backimgArr[i] = new Image(100,100);
+        backimgArr[i].src = 'images/00.png';
+        cells[i].i = i;
+        cells[i].appendChild(backimgArr[i]);
+    }
+    /*console.log(cells);*/
+    var srcArr = ['11.png','22.png','33.png','44.png',
+        '55.png','66.png','77.png','88.png'];
+
+    function init() {
+        for(var i = 0; i<cells.length; ){
+            var index = (Math.floor(Math.random()*16)); // random은 0-1까지이며 소수점까지 나와서 floor해주어야 함.
+            if(cells[index].word==null){
+                // cells[index].i = index;
+                var idx = i%8;
+                cells[index].idx = idx;
+                cells[index].word = 'images/' + srcArr[idx]; // JS는 변수 선언을 안해도 쓸 수 있다.
+                backimgArr[index].src = 'images/' + srcArr[idx];
+                i++;
+            }
+        }
+        // 5초 후에 감추기
+        var sec = 5;
+        // 계속 반복해서 출력
+        var interval = setInterval(function () {
+            // setInterval((변수, 함수 등), 시간) => 일정한 시간 간격으로 작업을 수행하기 위해 사용
+            // clearInterval 함수로 중지
+            sec--;
+            timer.innerText = sec + " 초 후에 게임 시작!";
+            if(sec == 0) {
+                clearInterval(interval);
+                // 실행 중인 작업을 중지시키는 것이 아니라
+                // 지정된 작업은 모두 실행이 되고 다음 작업 스케줄이 중지되는 것.
+            }
+        }, 1000);
+            // 한번만 호출
+            // setTimeout((변수,함수 등), 시간) => 지정된 시간을 대기 후 작업 수행, 다시 일정 시간 대기 수 작업 수행
+            // clearTimeout(변수) 함수로 중지
+            setTimeout(start, 5000); // start함수를 5초지난 후
+        }
+
+    function start() {
+        startSec = Date.parse(new Date());
+        for(var i = 0; i<cells.length; i++){
+            // 이미지로 초기화하기
+            // cells[i].innerText = " ";
+            backimgArr[i].src = 'images/00.png';
+            cells[i].onclick = function(){
+                backimgArr[this.i].src = this.word;
+                compare(this);
+            };
+        }
+        timer.innerText = "START GAME";
+        /*console.dir(cells);*/
+    }
+    var firstCell = null; // 전역변수 => 누르는 것 저장
+    function compare(cell) {
+        // check
+        // 1. 첫번째 클릭한 셀의 글자와 두번때 클릭한 셀의 글자비교
+        // 1-1. 첫번째 클릭한 것을 구분할 것.
+        // 1-2. 첫번째 클릭한 것은 다시 클릭 안되게 할 것.
+        // 2. 비교 후 같은 값의 셀이면 그대로 두기
+        // 3. 같은 값이 아닐 경우 원상 복구한다.
+        if(firstCell == null){
+            //console.log('first cell');
+            firstCell = cell;
+        } else{
+            if(firstCell == cell){
+                console.log('누른 것을 또 눌렀다.');
+                return;
+            }
+            //console.log('second cell');
+            if (firstCell.word == cell.word){
+                timer.innerText = "정답입니다!";
+                /*firstCell.style.background = "yellow";
+                cell.style.background = "yellow";*/
+                // 정답이므로 이벤트 제거
+                firstCell.onclick = null;
+                cell.onclick = null;
+                // 초기화
+                firstCell = null;
+                cnt++;
+                if(cnt == 8){
+                    console.log('게임오버');
+                    endSec = Date.parse(new Date());
+                    timer.innerText = "수행 시간: " + (endSec-startSec)/1000 + '초';
+                }
+            } else{
+                timer.innerText = "오답입니다!";
+                setTimeout(function () {
+                    /*firstCell.innerText = "";
+                    cell.innerText ="";*/
+                    /*firstCell.appendChild(backimgArr[firstCell.i]);
+                    cell.appendChild(backimgArr[cell.i]);*/
+                    backimgArr[firstCell.i].src = 'images/00.png';
+                    backimgArr[cell.i].src = 'images/00.png';
+                    firstCell = null;
+                },300);
+            }
+        }
+    }
+    init();
+</script>
+</body>
+</html>
+

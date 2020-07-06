@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>book객체 만들기</h2>
+<hr>
+<script>
+    // new Object()를 이용해서 book 객체를 작성하고 객체를 출력하라.
+    var book = new Object();
+    book.title = "HTML5";
+    book.author = "황기태";
+    book.price = 20000;
+    console.log(book);
+
+    // 리터럴 표기법으로 book 객체를 작성하고 객체를 출력하라.
+    var book2 = {
+        title: "HTML5",
+        author: "황기태",
+        price: 20000
+    }
+    console.log(book2);
+
+    // 프로토타입 Book을 작성하고 book 객체를 출력하라.
+    function Book (title, author, price) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+    }
+    var book3 = new Book("'HTML5", "황기태", 20000);
+    console.log(book3);
+</script>
+
+</body>
+</html>

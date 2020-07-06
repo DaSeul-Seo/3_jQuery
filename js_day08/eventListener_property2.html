@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function test(name, age) {
+        document.write("test >>>" + name + " : " + age + "세");
+    }
+    function test2() {
+        // console.log(arguments);
+        var name = arguments[0];
+        var age = arguments[1];
+        document.write("test2 >>>" + name + " : " + age + "세");
+
+        var num = 100; // 객체로 생각함.
+        console.log(typeof num); // 오토 언박싱
+        console.log(num.valueOf());
+    }
+    // test('홍길동', 28);
+    // test('이순신'); // undefined세
+    // test();
+
+    test2('홍길동', 28); // undefined세 : undefined세
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            display: inline-block; width: 60px; padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h3>17개의 CSS2 색 이름과 색</h3>
+<hr>
+<script>
+    var colorNames = ["maroon", "red", "orange", "yellow", "olive", "purple",
+        "fuchsia", "white", "lime", "green", "navy", "blue", "aqua", "teal",
+        "black", "silver", "gray"];
+
+    var body = document.getElementsByTagName("body")[0];
+    var divArr = [];
+    for(var i in colorNames) {
+        divArr[i] = document.createElement("div");
+        divArr[i].style.background = colorNames[i];
+        divArr[i].innerText = colorNames[i];
+        body.appendChild(divArr[i]);
+    }
+</script>
+</body>
+</html>

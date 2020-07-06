@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div#obj{
+            border: 1px solid red;
+            border-radius: 10px;
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            font-size: 18pt;
+            text-align: center;
+            line-height: 120px;
+            box-shadow: 5px 5px 5px;
+            transition: left 0.3s;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var obj = document.getElementById("obj");
+            var y = obj.offsetTop;
+            var x = obj.offsetLeft
+            // console.log('y => ', y);
+            window.onwheel = function (e) {
+                // console.log('wheel....', e.wheelDelta);
+                if (e.wheelDelta > 0) {
+                    // console.log('위로....');
+                    x -= 120;
+                } else {
+                    // console.log('아래로....');
+                    x += 120;
+                }
+                obj.style.left = x + 'px';
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="obj"> 캠핑가자 </div>
+</body>
+</html>

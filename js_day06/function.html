@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 함수 = JS의 함수는 참조가 가능.
+    // => 함수를 변수에 저장 가능하다.
+
+    // 함수 선언
+    function myFn() {
+        console.log('hello world');
+    }
+    // 변수에 함수를 담았다.
+    var myFn2 = function () {
+        console.log('hello myFn2');
+    }
+    // 변수가 다른 함수를 참조. ()를 붙이면 안됨.
+    var refFn = myFn;
+    // 함수 호출
+    // myFn();
+    // myFn2();
+    // refFn();
+
+</script>
+</body>
+</html>
