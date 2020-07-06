@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jQuery를 사용하기 위해 jQuery 라이브러리 준비 -->
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        // window.onload와 유사하지만 다르다.
+        // ready와 함께 사용 불가.
+        $(document).ready(function(){
+            // jQuery 객체를 select한다.
+            var $btn = $('#btn');
+            console.dir($btn);
+
+            // jQuery에서 DOM객체 뽑아오기
+            // var btn = $('#btn').get(0);
+            var btn = $btn[0];
+            console.dir(btn);
+
+            // DOM을 jQuery객체로 변환
+            var jQueryObj = $(btn);
+            console.log(jQueryObj);
+
+            var newDom = document.getElementById('btn');
+            console.log($(newDom));
+        });
+    </script>
+</head>
+<body>
+    <h2>jQuery 사용해보기</h2>
+    <hr>
+    <button id="btn">확인</button>
+</body>
+</html>
