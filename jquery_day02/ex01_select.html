@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg{
+            background-color: yellow;
+        }
+        .horizontal{
+            float: left;
+            list-style: none;
+            margin: 10px;
+            border: 1px solid silver;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            // li태그의 u에 클래스를 만들어 bg를 넣어라
+            $('li>u').addClass('bg');
+            // id가 myFavorites의 li에 horizontal 적용
+            $('#myFavorites>li').addClass('horizontal');
+            // id가 vue를 클릭하면 창 띄우기
+            $('#vue').on('click', function(){ // callback
+                alert(this.id); // this => view
+            });
+            // id가 node인 객체 접근
+            $('.node').click(function(){
+                alert('Node.js 프로그래밍');
+            });
+            // 스타일 시트 적용
+            //1. $('#myFavorites>li').css('backgroundColor','pink');
+            $('#myFavorites>li').css({
+                backgroundColor : 'skyblue',
+                color : 'navy'
+            });
+
+            var colors = ['red','green','blue','orange']
+            // i = index , j = 함수
+            $('#myFavorites>li').css('color ', function(i, j){
+                // callback 함수
+                // console.log(i, j);
+                return colors[i];
+            });
+        });
+    </script>
+</head>
+<body>
+    <h3>관심사항</h3>
+    <ul id="myFavorites">
+        <li><u>Java</u>Script</li>
+        <li>jQuery</li>
+        <li class="node">Node.js</li>
+        <li id="vue"><u>V</u>ue.js</li>
+    </ul>    
+</body>
+</html>

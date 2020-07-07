@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 50px;
+            height: 50px;
+            background-color: tomato;
+            position: relative;
+            text-align: center;
+            line-height: 50px;
+            left: 0;
+            top: 0;
+            transition: left .5s, transform .5s;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        // 버튼을 누르면 box의 left 500px로 이동
+        $(document).ready(function(){
+            $('#startBtn').click(function(){
+                // $('#box').css('left','500px');
+                // $('#box').css('transform','rotate(360deg)');
+
+                // JSON방법(여러개 스타일 적용 가능)
+                $('#box').css({'left':'500px', 'transform':'rotate(360deg)'});
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="startBtn">Start</button>
+    <hr>
+    <div id="box">Box</div>
+</body>
+</html>
+

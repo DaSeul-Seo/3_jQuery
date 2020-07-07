@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #top_menu{
+            border: 0px solid red;
+            padding: 0;
+            overflow: hidden;
+            width: 510px;
+        }
+        #top_menu ul{
+            display: none;
+            padding: 0;
+        }
+        #top_menu > li{
+            list-style: none;
+            float: left;
+            box-sizing: border-box;
+            /* border: 1px solid rebeccapurple; */
+            /* clear: both; */
+            width: 100px;
+        }
+        #top_menu > li > p{
+            padding: 5px;
+            margin: 0;
+            width: 100px;
+            text-align: center;
+            box-sizing: border-box;
+            border: 1px solid rebeccapurple;
+        }
+        #top_menu > li > ul{
+            margin: 0;
+            padding: 10px;
+            border: 1px solid red;
+            width: 150px;
+        }
+        #top_menu > li > ul > li{
+            /* float: left; */
+            list-style: none;
+            padding: 0 5px; /* 0 = 위, 아래 / 20px = 좌우 */
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#top_menu >li').click(function(){
+                // this = 부모, ul = 자식 // 뒤 = 부모, 앞 = 자식
+                // $('ul',this).css({display:'block'});
+                // $('ul',this).toggle('fast');
+                $('#top_menu ul').hide();
+                $('ul',this).show('fast');
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>SDS 홈페이지</h1>
+    <hr>
+    <ul id="top_menu">
+        <li>
+            <p>Home</p>
+            <ul>
+                <li>sub_menu1</li>
+                <li>sub_menu2</li>
+                <li>sub_menu3</li>
+            </ul>
+        </li>
+        <li>
+            <p>Profile</p>
+            <ul>
+                <li>sub_menu1</li>
+                <li>sub_menu2</li>
+                <li>sub_menu3</li>
+            </ul>
+        </li>
+        <li>
+            <p>Gallery</p>
+            <ul>
+                <li>sub_menu1</li>
+                <li>sub_menu2</li>
+                <li>sub_menu3</li>
+            </ul>
+        </li>
+        <li>
+            <p>Board</p>
+            <ul>
+                <li>sub_menu1</li>
+                <li>sub_menu2</li>
+                <li>sub_menu3</li>
+            </ul>
+        </li>
+        <li>
+            <p>Guest</p>
+            <ul>
+                <li>sub_menu1</li>
+                <li>sub_menu2</li>
+                <li>sub_menu3</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

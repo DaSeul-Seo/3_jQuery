@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #top_menu{
+            border: 0px solid red;
+            padding: 0;
+            overflow: hidden;
+            width: 510px;
+        }
+        #top_menu ul{
+            display: none;
+            padding: 0;
+        }
+        #top_menu > li{
+            list-style: none;
+            float: left;
+            box-sizing: border-box;
+            /* border: 1px solid rebeccapurple; */
+            /* clear: both; */
+            width: 100px;
+        }
+        #top_menu > li > p{
+            padding: 5px;
+            margin: 0;
+            width: 100px;
+            text-align: center;
+            box-sizing: border-box;
+            border: 1px solid rebeccapurple;
+        }
+        #top_menu > li > ul{
+            margin: 0;
+            padding: 10px;
+            border: 1px solid red;
+            overflow: hidden;
+            width: 100px;
+            float: left;
+            padding: 0;
+            top: 0;
+            left: 0;
+        }
+        #top_menu > li > ul > li{
+            list-style: none;
+            padding: 0 5px; /* 0 = 위, 아래 / 20px = 좌우 */
+            border: 1px solid green;
+            width: 100;
+        }
+        #top_menu ul > li > ul{
+            display: none;
+            overflow: hidden;
+        }
+        #top_menu ul > li > ul > li{
+            display: hidden;
+            border: 1px solid blue;
+            list-style: none;
+        }
+
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="../js/underscore.js"></script>
+
+    <script id="topMenuTemp" type="text/template">
+        <ul id="top_menu">
+            <%
+            for(var i = 0; i<menuList.length; i++){
+                var menu = menuList[i];
+            %>
+        <li>
+            <p><%=menu.title%></p>
+            <ul>
+                <%
+                for(var j = 0; j<menuList[i].submenu.length; j++){
+                    var submenu = menuList[i].submenu[j];
+                %>
+                <li><%=submenu.subName%>
+                <ul>
+                    <%
+                    for(var k = 0; k<susubmenuList.length; k++){
+                        var susubmenu = susubmenuList[k];
+                    %>
+                    <li><%=susubmenu.title%></li>
+                    <% } %>
+                </ul>
+                </li>
+                <% } %>
+            </ul>
+
+        </li>
+        <% } %>
+    </ul>
+    </script>
+
+    <script>
+        var menuList = [
+            {title: 'HOME',
+            submenu:[{subName:'menu1', susubmenuList},
+            {subName:'menu2', susubmenuList},{subName:'menu3',susubmenuList}]},
+            {title: 'PROFILE',
+            submenu:[{subName:'menu1', susubmenuList},
+            {subName:'menu2', susubmenuList},{subName:'menu3', susubmenuList}]},
+            {title: 'GALLERY',
+            submenu:[{subName:'menu1', susubmenuList},
+            {subName:'menu2', susubmenuList},{subName:'menu3', susubmenuList}]},
+            {title: 'BOARD',
+            submenu:[{subName:'menu1', susubmenuList},
+            {subName:'menu2', susubmenuList},{subName:'menu3', susubmenuList}]},
+            {title: 'GUEST',
+            submenu:[{subName:'menu1', susubmenuList},
+            {subName:'menu2', susubmenuList},{subName:'menu3', susubmenuList}]}
+        ];
+        var susubmenuList = [
+            {title: 'sub_menu1'},
+            {title: 'sub_menu2'},
+            {title: 'sub_menu3'}
+        ];
+        $(document).ready(function(){
+            var compiled = _.template($('#topMenuTemp').html());
+            $('nav').html(compiled({menuList: menuList}));
+
+            $('#top_menu >li').click(function(){
+                // this = 부모, ul = 자식 // 뒤 = 부모, 앞 = 자식
+                // $('ul',this).css({display:'block'});
+                // $('ul',this).toggle('fast');
+                $('#top_menu ul').hide();
+                $('ul',this).show('fast');
+                $('#top_menu ul > li > ul').hide();
+                $('#top_menu ul > li').click(function(){
+                    $('#top_menu ul > li > ul').hide();
+                    $('ul',this).show('fast');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>SDS 홈페이지</h1>
+    <hr>
+    <nav></nav>
+</body>
+</html>
