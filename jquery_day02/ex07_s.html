@@ -36,7 +36,7 @@
             padding: 10px;
             border: 1px solid red;
             overflow: hidden;
-            width: 100px;
+            width: 500px;
             float: left;
             padding: 0;
             top: 0;
@@ -44,9 +44,10 @@
         }
         #top_menu > li > ul > li{
             list-style: none;
+            float: left;
             padding: 0 5px; /* 0 = 위, 아래 / 20px = 좌우 */
             border: 1px solid green;
-            width: 100;
+            width: 100px;
         }
         #top_menu ul > li > ul{
             display: none;
@@ -120,14 +121,14 @@
             var compiled = _.template($('#topMenuTemp').html());
             $('nav').html(compiled({menuList: menuList}));
 
-            $('#top_menu >li').click(function(){
+            $('#top_menu >li').hover(function(){
                 // this = 부모, ul = 자식 // 뒤 = 부모, 앞 = 자식
                 // $('ul',this).css({display:'block'});
                 // $('ul',this).toggle('fast');
                 $('#top_menu ul').hide();
                 $('ul',this).show('fast');
                 $('#top_menu ul > li > ul').hide();
-                $('#top_menu ul > li').click(function(){
+                $('#top_menu ul > li').hover(function(){
                     $('#top_menu ul > li > ul').hide();
                     $('ul',this).show('fast');
                 });
