@@ -10,7 +10,7 @@
 	<div id="listArea"></div>
 	<hr>
 	<button id="loadBtn">목록 불러오기</button>
-	이름검색 : <input type="text" id="inputBtn">
+	이름검색 : <input type="text" id="inputText">
 
 	<script src="../js/underscore.js"></script>
 	<script type="text/template" id="listTemp">
@@ -39,10 +39,10 @@
 		var listArea = document.getElementById('listArea');
 		var loadBtn = document.getElementById('loadBtn');
 		var listTemp = document.getElementById('listTemp');
-		var inputBtn = document.getElementById('inputBtn');
+		var inputText = document.getElementById('inputText');
 		var compiled = _.template(listTemp.innerHTML);
 		
-
+		
 		loadBtn.onclick = function() {
 			// ajax 객체
 			var xhr = new XMLHttpRequest();
@@ -51,7 +51,7 @@
 				// console.log(this.status, this.readyState);
 				if (this.status == 200 && this.readyState == 4) {
 					// console.log(this.responseText.trim());
-					compiled = this.responseText.trim();
+					listArea = this.responseText.trim();
 					//var obj = JSON.parse(this.responseText.trim());
 					//console.log(obj);
 				}
