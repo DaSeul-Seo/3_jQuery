@@ -5,38 +5,63 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h3>사람 목록</h3>
+	<hr>
+	<div id="listArea"></div>
+	<hr>
+	<button id="loadBtn">목록 불러오기</button>
+	이름검색 : <input type="text" id="inputBtn">
 
-<h3>사람 목록</h3>
-<hr>
-<div id="listArea"></div>
-<hr>
-<button id="loadBtn">목록 불러오기</button>
+	<script src="../js/underscore.js"></script>
+	<script type="text/template" id="listTemp">
+		<table border="1">
+			<tr>
+				<td>no</td>
+				<td>name</td>
+				<td>address</td>
+				<td>age</td>
+			</tr>
+			<%
+			for(var i=0; i<students.length; i++){
+				var student = students[i];
+			%>
+			<tr>
+				<td><%=student.no%></td>
+				<td><%=student.name%></td>
+				<td><%=student.address%></td>
+				<td><%=student.age%></td>
+			</tr>
+			<% } %>
+		</table>
+	</script>
+	<script>
+		var students;
+		var listArea = document.getElementById('listArea');
+		var loadBtn = document.getElementById('loadBtn');
+		var listTemp = document.getElementById('listTemp');
+		var inputBtn = document.getElementById('inputBtn');
+		var compiled = _.template(listTemp.innerHTML);
+		
 
-<script src="../js/underscore.js"></script>
-<script type="text/template" id="listTemp"></script>
-<script>
-	var listArea = document.getElementById('listArea');
-	var loadBtn = document.getElementById('loadBtn');
-	loadBtn.onclick = function(){
-    // ajax 객체
-    var xhr = new XMLHttpRequest();
-    // console.log(xhr);
-
-    xhr.onreadystatechange = function(){ // callback
-        // console.log(this.status, this.readyState);
-        if(this.status==200 && this.readyState==4){
-            // console.log(this.responseText.trim());
-            listArea.innerHTML = this.responseText.trim();
-            //var obj = JSON.parse(this.responseText.trim());
-            //console.log(obj);
-        }
-    };
-    // url 보내기 / ture = 동기 / false = 비동기
-    xhr.open('GET', '../json/data.json', true);
-    // 200이 정상
-    xhr.send();
-	}
-</script>
+		loadBtn.onclick = function() {
+			// ajax 객체
+			var xhr = new XMLHttpRequest();
+			// console.log(xhr);
+			xhr.onreadystatechange = function() { // callback
+				// console.log(this.status, this.readyState);
+				if (this.status == 200 && this.readyState == 4) {
+					// console.log(this.responseText.trim());
+					compiled = this.responseText.trim();
+					//var obj = JSON.parse(this.responseText.trim());
+					//console.log(obj);
+				}
+			};
+			// url 보내기 / ture = 비동기 / false = 동기
+			xhr.open('GET', '../json/data.json', true);
+			// 200이 정상
+			xhr.send();
+		}
+	</script>
 
 </body>
 </html>
