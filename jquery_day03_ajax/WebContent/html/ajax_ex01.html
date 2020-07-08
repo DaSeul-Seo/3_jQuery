@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script>
+    // ajax 객체
+    var xhr = new XMLHttpRequest();
+    // console.log(xhr);
+
+    xhr.onreadystatechange = function(){ // callback
+        // console.log(this.status, this.readyState);
+        if(this.status==200 && this.readyState==4){
+            // console.log(this.responseText.trim());
+            var obj = JSON.parse(this.responseText.trim());
+            console.log(obj.user, obj.msg);
+        }
+    };
+    // url 보내기 / ture = 동기 / false = 비동기
+    var params = '?user=Park&msg=ok';
+    xhr.open('GET', '../jsp/server_data.jsp' + params, true);
+    // 200이 정상
+    xhr.send();
+</script>
+
+</body>
+</html>

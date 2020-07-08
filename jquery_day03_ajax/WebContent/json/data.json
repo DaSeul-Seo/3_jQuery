@@ -1,0 +1,10 @@
+{
+	"students":[
+		{"no":1, "name":"kim", "address":"seoul","age":23},
+		{"no":2, "name":"le", "address":"busan","age":22},
+		{"no":3, "name":"park", "address":"deagu","age":13},
+		{"no":4, "name":"kang", "address":"incheon","age":21},
+		{"no":5, "name":"choi", "address":"suwon","age":20}
+	],
+	"size":5
+}
