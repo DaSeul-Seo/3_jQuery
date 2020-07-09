@@ -7,31 +7,39 @@
 <body>
 	<h3>사람 목록</h3>
 	<hr>
-	<div id="listArea"></div>
 	<hr>
-	<button id="loadBtn">목록 불러오기</button>
-	이름검색 : <input type="text" id="inputText">
+	검색 : 
+	<select id="gubun">
+		<option value="no">no</option>
+		<option value="name" selected>name</option>
+		<option value="address">address</option>
+		<option value="age">age</option>
+	</select>
+	<input type="text" id="search">
+	<hr>
+	<div id="listArea"></div>
+	<div id="loadBtn"></div>
 
 	<script src="../js/underscore.js"></script>
 	<script type="text/template" id="listTemp">
-		<table border="1">
+		<table border="1" width="550">
 			<tr>
-				<td>no</td>
-				<td>name</td>
-				<td>address</td>
-				<td>age</td>
+				<th>no</th>
+				<th>name</th>
+				<th>address</th>
+				<th>age</th>
 			</tr>
 			<%
 			for(var i=0; i<students.length; i++){
 				var student = students[i];
 			%>
 			<tr>
-				<td><%=student.no%></td>
-				<td><%=student.name%></td>
-				<td><%=student.address%></td>
-				<td><%=student.age%></td>
+				<th><%=student.no%></th>
+				<th><%=student.name%></th>
+				<th><%=student.address%></th>
+				<th><%=student.age%></th>
 			</tr>
-			<% } %>
+			<% } // end of for%>
 		</table>
 	</script>
 	<script>
@@ -39,11 +47,25 @@
 		var listArea = document.getElementById('listArea');
 		var loadBtn = document.getElementById('loadBtn');
 		var listTemp = document.getElementById('listTemp');
-		var inputText = document.getElementById('inputText');
+		var gubun = document.getElementById('gubun');
+		var search = document.getElementById('search');
 		var compiled = _.template(listTemp.innerHTML);
+		var obj = null;
+
+		search.onkeyup = function(){
+			// console.log(this.value);
+			console.log("gubun => " + gubun.value);
+			var gubunValue = gubun.value;
+			var word = this.value;
+			var students = obj.students;
+			var searchList = students.filter(function(student){
+				return new String(student[gubun.value]).indexOf(word) != -1;			
+			});
+			// obj.student = searchList;
+			listArea.innerHTML = compiled({students : searchList});
+		}
 		
-		
-		loadBtn.onclick = function() {
+		window.onload = function() {
 			// ajax 객체
 			var xhr = new XMLHttpRequest();
 			// console.log(xhr);
@@ -51,9 +73,9 @@
 				// console.log(this.status, this.readyState);
 				if (this.status == 200 && this.readyState == 4) {
 					// console.log(this.responseText.trim());
-					listArea = this.responseText.trim();
-					//var obj = JSON.parse(this.responseText.trim());
-					//console.log(obj);
+					//listArea.innerHTML = this.responseText.trim();
+					obj = JSON.parse(this.responseText.trim());
+					listArea.innerHTML = compiled(obj);
 				}
 			};
 			// url 보내기 / ture = 비동기 / false = 동기
