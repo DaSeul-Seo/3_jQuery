@@ -1,0 +1,3 @@
+<section>메인 베너</section>
+<hr>
+<p>환영합니다</p>

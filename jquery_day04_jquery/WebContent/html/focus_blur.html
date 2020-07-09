@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('input[name=name]').focus(function(){
+                $(this).css('border', '5px double red');
+            }).blur(function(){
+                $(this).css('border', '');
+                // val() 함수 => form안에 값이나 메소드를 가져오거나 설정
+                alert('이름: ' + $(this).val()); // this.value
+            })
+        });
+    </script>
+</head>
+<body>
+    <h1>focus와 blur 이벤트</h1>
+    <form action="">
+        이름 : <input type="text" name="name">
+    </form>
+</body>
+</html>

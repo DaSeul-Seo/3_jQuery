@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>list.html</title>
+<style>
+table{
+	border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+<h3>친구 목록</h3>
+<hr>
+<table width="550" border="1">
+	<tr>
+		<th>no</th><th>name</th><th>address</th>
+	</tr>
+	<script>
+	for(var i = 0; i<50; i++){
+	var html = '<tr>';
+	html +=	'<td>' + i + '</td><td><a href="detail.html">1111</td><td>111111</td>';
+	html += '</tr>';
+	document.write(html);
+	}
+	</script>	
+</table>
+</body>
+</html>

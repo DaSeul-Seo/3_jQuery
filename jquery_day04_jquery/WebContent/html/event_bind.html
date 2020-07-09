@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#chkAll').bind('click', function(){
+                if(this.checked){
+                    $("span").text("선택해제");
+                    $(":checkbox").prop('checked', true); // 속성 추가
+                } else{
+                    $("span").text("전체선택");
+                    $(":checkbox").prop('checked', false); // 속성 추가
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>bind 이벤트</h1>
+    <h4>checkbox를 이용한 전체 선택</h4>
+    <form action="">
+        <input type="checkbox" id="chkAll">
+        <span>전체선택</span>
+        <p>
+            <div id="subCheck">
+                <input type="checkbox">C#
+                <input type="checkbox">HTML5
+                <input type="checkbox">Java
+                <input type="checkbox">jQuery
+            </div>
+        </p>
+    </form>
+</body>
+</html>
