@@ -15,11 +15,11 @@
     <script src="../js/jquery-3.5.1.js"></script>
     <script>
         $(function(){
-            $("button :frist").click(function(){
+            $("button:first").click(function(){
                 update($("span:first"));
             });
             $("button:last").click(function(){
-                $("button:frist").trigger('click');
+                $("button:first").trigger('click');
                 update($("span:last"));
             });
             function update(j){
