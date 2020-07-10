@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#btn").click(function(){
+                $("img").removeAttr("src")
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="button" id="btn" value="src삭제">
+    <img src="images/img01.jpeg" alt="제이펍" title="제이펍">
+</body>
+</html>

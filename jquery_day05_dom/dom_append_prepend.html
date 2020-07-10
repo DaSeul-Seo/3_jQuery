@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{width: 50px; height: 40px;}
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        // 특정 문서 객체에 문서 객체를 앞이나 뒤에 추가하는 메소드
+        // 앞 = prepend, prependTo / 뒤 = append, appendTo
+        // <h3><img>추가</h3>       / <h3>추가<img></h3>
+        // 영역 안
+        var colors = new Array("red", "green", "pink", "yellow");
+        // h3태그의 각각 다른 바탕색 적용하기
+        $(document).ready(function(){
+            $('h3').each(function(index){
+                $(this).css("background", colors[index]);
+            });
+            var img = "<img src='images/img01.jpeg'>";
+
+            $('#prepend').click(function(){
+                $(".a").prepend(img);
+            });
+            $('#append').click(function(){
+                $(".b").append(img);
+            });
+            $('#prependTo').click(function(){
+                $(img).prependTo('.c');
+            });
+            $('#appendTo').click(function(){
+                $(img).appendTo('.d');
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="button" id="prepend" value="prepend">
+    <input type="button" id="append" value="append">
+    <input type="button" id="prependTo" value="prependTo">
+    <input type="button" id="appendTo" value="appendTo">
+
+    <h3 class="a">prepend 영역</h3>
+    <h3 class="b">append 영역</h3>
+    <h3 class="c">prependTo 영역</h3>
+    <h3 class="d">appendTo 영역</h3>
+</body>
+</html>

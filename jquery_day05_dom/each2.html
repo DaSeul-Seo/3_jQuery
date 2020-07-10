@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        $(function(){
+            var arr=[
+                {name: "제이펍", url : "http://www.jpub.kr"},
+                {name: "다음", url : "http://www.daum.net"},
+                {name: "네이버", url : "http://www.naver.com"}
+            ];
+            var data="";
+            $.each(arr, function(i, element){ // 콜백 함수
+                data += "<p><a href='"+element.url+"'>" + element.name + "</a></p>"
+            });
+            // 만들어진 결과를 div태그에 넣는다.
+            $("div").html(data);
+
+            // a태그에 css 적용
+            $("a").css("textDecoration", "none"); 
+        });
+    </script>
+</head>
+<body>
+    <h3>each를 통한 동적 DOM 생성</h3>
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg{background-color: pink;}
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        var count = 0;
+         $(document).ready(function(){
+             $('h1').click(function(){
+                count++;
+                $(this).toggleClass('bg', count%2==0);
+                $(this).html("count = " + count);
+             });
+         });
+    </script>
+</head>
+<body>
+    <h1>count = 0</h1>
+</body>
+</html>

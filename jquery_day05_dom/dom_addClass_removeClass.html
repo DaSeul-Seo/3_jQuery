@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .h1Css{background-color: yellow;}
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('h1')
+            .mouseover(function(){
+                $(this).addClass("h1Css");
+            })
+            .mouseout(function(){
+                $(this).removeClass("h1Css");
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>마우스를 올려보세요.</h1>
+</body>
+</html>

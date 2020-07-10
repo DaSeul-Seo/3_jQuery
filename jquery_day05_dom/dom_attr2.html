@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        // attr({}) 의 형태로 속성 여러 개를 추가
+        $(document).ready(function(){
+            $('#multiAttr').attr({
+                src:"images/img02.jpg",
+                width: "200px",
+                height: "200px",
+                alt:"star",
+                title:"star"
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>다중속성 지정</h1>
+    <img id="multiAttr">
+</body>
+</html>

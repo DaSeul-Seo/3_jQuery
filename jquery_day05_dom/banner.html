@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .btns>button:nth-child(1){
+            background-color: lightcoral;
+        } */
+        .imgs li:nth-child(1){
+            background-image: url("images/풍경1.jpg");
+        }
+        .imgs li:nth-child(2){
+            background-image: url("images/풍경2.jpg");
+        }
+        .imgs li:nth-child(3){
+            background-image: url("images/풍경3.jpg");
+        }
+        .imgs li:nth-child(4){
+            background-image: url("images/풍경4.jpg");
+        }
+        .imgs{
+            padding: 0;
+            margin: 0;
+            width: 3200px;
+        }
+        .imgs li{
+            float: left;
+            width: 800px;
+            height: 400px;
+            color: chartreuse;
+            text-shadow: 2px 2px 2px black;
+            font-size: 30px;
+            list-style: none;
+            background-size: 800px 400px;
+            background-position: bottom;
+        }
+        .banner, .imgs{
+            position: relative;
+            left: 0px;
+            transition: left cubic-bezier(0.6, -0.28, 0.735, 0.045) .5s;
+        }
+        .btns{
+            position: absolute;
+            left: 330px;
+            top: 360px;
+        }
+        .btns button{
+            box-shadow: 2px 2px 2px black;
+            border: 0px;
+            border-radius: 4px;
+        }
+        .banner{
+            overflow: hidden;
+        }
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+</head>
+<body>
+    <div class="banner">
+        <ul class="imgs">
+            <li>good</li>
+            <li>good</li>
+            <li>good</li>
+            <li>good</li>
+        </ul>
+        <div class="btns">
+            <!--data-index = HTML5에 추가된 기능-->
+            <button data-index="0">1</button>
+            <button data-index="1">2</button>
+            <button data-index="2">3</button>
+            <button data-index="3">4</button>
+        </div>
+    </div>
+    <script>
+        // .btns 안에 있는 button을 클릭하면 클릭된 버튼만 변함
+        $(document).ready(function(){
+            $('.btns button:nth(0)').css('backgroundColor', 'lightcoral');
+            $('.btns button').click(function(){
+                $('.btns button').css('backgroundColor', '');
+                $(this).css('backgroundColor', 'lightcoral');
+                // console.log($(this).attr('data-index'));
+                var index = $(this).attr('data-index');
+                var left = index * 800 *-1;
+
+                $('.imgs').css('left', left+'px');
+            });
+        });
+    </script>
+</body>
+</html>

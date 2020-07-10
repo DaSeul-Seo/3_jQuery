@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            // JS에서 createElement 또는 createTextNode 메소드
+            // h1 요소 생성
+            var h1 = $("<h1>Dom 생성 객체</h1>");
+            // body영역에 h1 요소 추가 
+            $("body").append(h1);
+            // img요소를 생성하여 appendTo를 이용해 body영역에 추가
+            $("<img src='images/img01.jpeg'>").appendTo("body");
+        });
+    </script>
+</head>
+<body></body>
+</html>

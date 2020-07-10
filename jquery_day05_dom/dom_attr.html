@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        // 해당 객체의 속성을 추가하거나 삭제하는 메소드
+        // 여러 객체에 같은 속성을 한번에 적용
+        // 추가 = attr() / 삭제 = removeAttr()
+        $(document).ready(function(){
+            $("#img").mouseover(function(){
+                $(this).attr("src", "images/img02.jpg");
+            })
+            .mouseout(function(){
+                $(this).attr("src", "images/img01.jpeg");
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Dom 요소 속성 추가</h1>
+    <img src="images/img01.jpeg" id="img" width="75" height="75">
+</body>
+</html>
