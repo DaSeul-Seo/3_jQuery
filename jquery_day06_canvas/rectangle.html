@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas#myCanvas{
+            background-color: lightcoral;
+            /* width: 600px;
+            height: 400px; */
+        }
+    </style>
+
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            let ctx = $("#myCanvas")[0].getContext('2d');
+            $("#myCanvas").attr({"width" :'600', "height" : '400'});
+
+            // for(let i = 0; i<5; i++){
+            //     ctx.rect(i*30+10, i*10+10, 50, 50);
+            // }
+            let cw = parseInt($("#myCanvas").css('width')); // px 가 있어서
+            let ch = parseInt($("#myCanvas").css('height'));
+            
+            let i = 0;
+            let itv = setInterval(()=>{
+                ctx.clearRect(0,0,cw,ch); // 지우기(전체 화면에 다시 그린다)
+                ctx.beginPath();
+                ctx.rect(i*30+10, i*10+10, 50, 50);
+                ctx.strokeStyle = "white";
+                ctx.stroke();
+                i++;
+                if(i==10) clearInterval(itv);
+            }, 500);
+        });
+    </script>
+</head>
+
+<body>
+    <h3>사각형 그리기</h3>
+    <hr>
+    <canvas id="myCanvas"></canvas>
+</body>
+</html>

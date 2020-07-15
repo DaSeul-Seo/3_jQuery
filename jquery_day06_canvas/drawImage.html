@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas#myCanvas{
+            background-color: aliceblue;
+        }
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            let ctx = $('#myCanvas')[0].getContext('2d');
+            $('#myCanvas').attr({"width" : '600', "height":'400'});
+
+            let cw = $('#myCanvas').attr("width");
+            let ch = $('#myCanvas').attr("height");
+
+            let img = new Image();
+            img.src = "images/엘사.jpeg";
+            img.onload = function(){
+                ctx.drawImage(img, 0, 0, cw, ch);
+            }
+        });
+    </script>
+</head>
+<body>
+    <h3>drawImage</h3>
+    <hr>
+    <canvas id="myCanvas"></canvas>
+</body>
+</html>

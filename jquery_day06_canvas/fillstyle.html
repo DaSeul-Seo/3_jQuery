@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas#myCanvas{
+            background-color: aliceblue;
+        }
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            let ctx = $('#myCanvas')[0].getContext('2d');
+            $('#myCanvas').attr({"width" : '180', "height":'420'});
+
+            // fillRect()로 외곽선 없이 색으로 채운 사각형 그리기
+            ctx.fillStyle = "violet";
+            ctx.fillRect(20,20,100,100); // 채운 사각형 그리기
+
+            // fill()로 사각형 내부 칠하기
+            ctx.beginPath();
+            ctx.rect(20,150,100,100); // 경로에 사각형 삽입
+            ctx.fillStyle = "violet";
+            ctx.fill(); // 사각형 내부 칠하기
+
+            // 사각형 외곽선 그리기
+            ctx.strokeStyle = "gray";
+            ctx.lineWidth = 10;
+            ctx.stroke(); // 사각형 외각선 그리기
+
+            // fill()로 원호 내부 칠하기
+            ctx.beginPath();
+            ctx.moveTo(80,340); // 원호의 중심을 시작점으로 설정
+            ctx.arc(80,340,50,0,1.5*Math.PI); // 경로에 원호 삽입
+            ctx.closePath(); // 원호의 끝점과 경로 시작점(원호중심)을 열결하는 직선 자동 추가
+            ctx.fillStyle = "yellowgreen";
+            ctx.fill(); // 원호 내부 칠하기
+
+            // 원호 외곽선 그리기
+            ctx.strokeStyle = "gray";
+            ctx.lineWidth = 10;
+            ctx.stroke(); // 원호 외곽선
+        });
+    </script>
+</head>
+<body>
+    <h3>채운 사각형과 원호 그리기</h3>
+    <hr>
+    <canvas id="myCanvas"></canvas>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script>
+        let ctx = null;
+        let shape = {
+            color : 'white',
+            width : 1,
+            setShape : function(color, width){
+                if(color != null){this.color = color;}
+                if(width != null){this.width = width;}
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = this.width;
+
+                // 펜 모양 부분의 영역을 지우고 다시 라인 그리기
+                ctx.clearRect(703,0,860,90);
+                ctx.beginPath();
+                ctx.moveTo(710, 55);
+                ctx.lineTo(800,55);
+                ctx.stroke();
+            }
+        }
+        let draw = {
+            drawing : false,
+            start : function(e){
+                // console.log(e.pageX, e.pageY);
+                this.drawing = true;
+                ctx.beginPath();
+                ctx.moveTo(e.offsetX, e.offsetY);
+            },
+            move : function(e){
+                if(this.drawing){
+                ctx.lineTo(e.offsetX,e.offsetY);
+                ctx.stroke();
+                }
+            },
+            end : function(e){
+                this.drawing = false;
+            },
+            clear : function(e){
+                ctx.clearRect(0,0,860,654);
+            }
+        }
+        $(document).ready(function(){
+            ctx = $('#cv').get(0).getContext('2d');
+            $('#cv').attr({"width" : '860px', "height" : '654px'});
+
+            // 사각형 그리기
+            // ctx.fillStyle = "#ff0"; // 색
+            // ctx.fillRect(10,5,200,200);
+
+            // 선그리기
+            shape.setShape();
+            
+            // 마우스 이벤트 헨들러
+            let drawing = false;
+            $('#cv').on('mousedown', draw.start);
+            $('#cv').on('mousemove', draw.move);
+            $('#cv').on('mouseup', draw.end);
+
+            $('#clear').click(draw.clear);
+
+            for(let i = 0; i<16; i++){
+                $('#pen_width').append('<option value="'+i+'">'+i+'</option>');
+            }
+            $('#pen_width').change(function(){
+                // console.lod(tnis.value);
+                shape.setShape(null, this.value);
+            });
+            let color_map = [
+                {"value" : 'white', "name" : '흰색'},
+                {"value" : 'red', "name" : '빨강'},
+                {"value" : 'orange', "name" : '주황'},
+                {"value" : 'yellow', "name" : '노랑'},
+                {"value" : 'green', "name" : '초록'},
+                {"value" : 'blue', "name" : '파랑'},
+                {"value" : 'navy', "name" : '남색'},
+                {"value" : 'violet', "name" : '보라'},
+                {"value" : 'black', "name" : '검정'},
+            ]
+            $.each(color_map, function(idx, item){
+                let optionTag = "<option value='"+item.value+"'>"+item.name+"</option>";
+                $('#pen_color').append(optionTag);
+            });
+            $('#pen_color').change(function(){
+                // console.log(this.value);
+                shape.setShape(this.value, null);
+            })
+        });
+    </script>
+</head>
+<body style="width: 1050px;">
+    <div>
+    <canvas id="cv" width="860" height="645"></canvas>
+    <div id="menu">
+        <button id="clear">clear</button>
+        <fieldset>
+            <legend>색상변경</legend>
+            <select id="pen_color"></select>
+        </fieldset>
+        <fieldset>
+            <legend>펜 두께</legend>
+            <select id="pen_width"></select>
+        </fieldset>
+        <fieldset id="pen_shape">
+            <legend>펜 모양</legend>
+        </fieldset>
+    </div>
+</div>
+</body>
+</html>

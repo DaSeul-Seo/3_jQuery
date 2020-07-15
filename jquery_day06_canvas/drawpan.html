@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas#myCanvas{
+            background-color: aliceblue;
+        }
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        let ctx = null;
+        $(document).ready(function(){
+            ctx = $('#myCanvas')[0].getContext('2d');
+            $('#myCanvas').attr({"width" : '600', "height":'400'});
+            let cw = $('#myCanvas').attr("width");
+            let ch = $('#myCanvas').attr("height");
+            // 선 스타일 지정
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = "blue";
+
+            $('#myCanvas').mousemove((e)=>{
+                move(e); // e는 event 객체
+            });
+            $('#myCanvas').mousedown((e)=>{
+                down(e);
+            });
+            $('#myCanvas').mouseup((e)=>{
+                up(e);
+            });
+            $('#myCanvas').mouseout((e)=>{
+                out(e);
+            });
+        });
+
+        let startX = 0, startY = 0;
+        let dragging = false;
+        function draw(curX, curY){
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(curX, curY);
+            ctx.stroke();
+        }
+        function down(e){
+            startX = e.offsetX;
+            startY = e.offsetY;
+            dragging = true;
+        }
+        function up(e){dragging = false;}
+        function move(e){
+            if(!dragging) return; // 마우스가 눌러지지 않았다면
+            let curX = e.offsetX, curY = e.offsetY;
+            draw(curX, curY);
+            startX = curX;
+            startY = curY;
+        }
+        function out(e){dragging = false;}
+    </script>
+</head>
+<body>
+    <h3>drawImage</h3>
+    <hr>
+    <canvas id="myCanvas"></canvas>
+</body>
+</html>

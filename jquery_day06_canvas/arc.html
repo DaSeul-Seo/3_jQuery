@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas#myCanvas{
+            background-color: aliceblue;
+            /* width: 600px;
+            height: 400px; */
+        }
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            let ctx = $("#mycanvas")[0].getContext('2d');
+            // canvas창을 변경하려면 offset을 변경한다.
+            $("#mycanvas").attr({"width" :'600', "height" : '400'});
+
+            ctx.beginPath();
+            ctx.strokeStyle = "magenta";
+            ctx.arc(100,70,30,0,1.5*Math.PI, false); // 시계방향
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.strokeStyle = "blue";
+            ctx.arc(100,70,50, Math.PI/2, Math.PI, true); // 반시계방향
+            ctx.stroke();
+    });
+    </script>
+</head>
+<body>
+    <h3>선으로 삼각형 그리기</h3>
+    <hr>
+    <canvas id="mycanvas"></canvas>
+</body>
+</html>

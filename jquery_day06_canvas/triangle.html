@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas#myCanvas{
+            background-color: aliceblue;
+        }
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        function triangle(ctx, p){
+        // 삼각형 그리기
+        ctx.beginPath(); // 만들기
+        ctx.moveTo(p[0].x, p[0].y); // (120,20)을 시작점으로 설정
+        ctx.lineTo(p[1].x, p[1].y); // 경로에 (120,20)에서 (20,50)까지 직선 추가
+        ctx.lineTo(p[2].x, p[2].y); // 경로에 (20,50)에서 (150,120)까지 직선 추가
+        ctx.closePath(); // 경로에 (150,120)에서 (120,20)까지 직선 추가
+        ctx.strokeStyle = p[3]; // 선 생
+        ctx.stroke(); // 경로를 캔버스를 그린다.
+        }
+        $(document).ready(function(){
+            let ctx = $("#mycanvas")[0].getContext('2d');
+            let points = [{x:120, y:20},{x:20, y:50},{x:150, y:120},"blue"]
+            triangle(ctx, points);
+    });
+    </script>
+</head>
+<body>
+    <h3>선으로 삼각형 그리기</h3>
+    <hr>
+    <canvas id="mycanvas"></canvas>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas#myCanvas{
+            background-color: aliceblue;
+        }
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            let ctx = $('#myCanvas')[0].getContext('2d');
+            $('#myCanvas').attr({"width" : '500', "height":'400'});
+
+            ctx.strokeStyle = "blue";
+
+            // font 프로퍼티로 다양한 크기와 서체 활용
+            for(let i = 0; i<4; i++){
+                ctx.font = (10 + i*10) + "px forte";
+                ctx.strokeText("Javascript 재밌다.", 10, 30 + i*50);
+            }
+
+            // 텍스트 외곽선만 그리기
+            ctx.font = "italic 50px forte";
+            ctx.strokeStyle = "magenta";
+            ctx.lineWidth = 3;
+            ctx.textAlign = "left";
+            ctx.strokeText("Javascript 재밌다.", 50, 250);
+
+            // 텍스트 채워 그리기
+            ctx.fillStyle = "green";
+            ctx.textAlign = "right";
+            ctx.fillText("Javascript 재밌다.", 490, 300);
+        });
+    </script>
+</head>
+<body>
+    <h3>텍스트 그리기</h3>
+    <hr>
+    <canvas id="myCanvas"></canvas>
+</body>
+</html>
